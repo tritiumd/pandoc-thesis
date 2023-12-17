@@ -1,0 +1,77 @@
+---
+#Tùy chỉnh thông tin
+university: Đại học Quốc gia Hà Nội # Tên đại học
+collage: Trường Đại học Khoa học Tự nhiên # Tên trường
+faculty: Khoa Toán - Cơ - Tin học # Tên khoa
+subject: Thực tập thực tế phát triển phần mềm # Tên môn học
+major: Toán tin # Ngành học
+title: Tool tạo pdf báo cáo từ markdown # Tên đề tài
+subtitle: Báo cáo cuối môn học # Tên phụ
+instructor: Phan Thanh Ngọc # Tên giáo viên hướng dẫn
+author:
+  - name: Phan Thanh Ngọc # Tên tác giả
+    id: 20000001 # Mã số sinh viên
+  - name: Phan Thanh Ngọc # Tên tác giả
+    id: 20000001 # Mã số sinh viên
+position: Hà Nội
+day: 05 # Ngày
+month: 11 # Tháng
+year: 2023 # Năm
+# Tùy chỉnh định dạng
+# Mục nào đánh dấu thử nghiệm xóa hay sửa có thể gây lỗi
+documentclass: scrbook
+fontsize: 14pt # Kích thước phông chữ
+top-margin: 2.5cm # Lề trên
+bottom-margin: 2.5cm # Lề dưới
+left-margin: 3cm # Lề trái
+right-margin: 2.5cm # Lề phải
+font: Times New Roman # Kiểu phông chữ
+line-spacing: 1 # Khoảng cách giữa các dòng
+indent: 14pt # Khoảng cách thụt đầu dòng
+parskip: 6pt # Khoảng cách giữa các đoạn
+pagestyle: '`
+\fancyhead[L]{\includegraphics[height=0.5cm]{image/Khoa Toán - Cơ - Tin học.png}}
+\fancyhead[R]{\leftmark}
+\fancyfoot[C]{\thepage}
+`{=latex}' # Thử nghiệm: tự viết đầu trang chân trang
+
+number-sections:
+  chapter: '`\arabic{chapter}`{=latex}'
+  section: '`\thechapter.\arabic{section}`{=latex}'
+  subsection: '`\thesection.\arabic{subsection}`{=latex}'
+  subsubsection: '`\thesubsection.\arabic{subsubsection}`{=latex}'
+# arabic là số tự nhiên có thể thay bằng roman là số la mã nhỏ,
+# Roman là số la mã hoa, alph là chữ cái thường, Alph là chữ cái hoa
+# có thể rút gọn thành number-sections: true nếu dùng như trên
+# muốn bỏ đánh số thì xóa 5 dòng kia
+toc:
+  tocdepth: 2 # Độ sâu của mục lục default 2 do tính từ 0
+  lof: false # Mục lục hình
+  lot: false # Mục lục bảng
+
+# bìa ngoài
+titlepage_cover: true
+frame_type: 2 # kiểu khung 0 là tự viết, còn có khung 1,2,3
+frame: '` `{=latex}'
+# Thử nghiệm: tự viết khung với framekind 0, không viết sẽ không có khung
+horizontal_line: '`\fontsize{8}{16}\Pisymbol{dingbat}{69} \hspace{1.4cm}  \Huge\usym{1F56E} \hspace{1cm} \fontsize{8}{16}\Pisymbol{dingbat}{70}`{=latex}'
+# Thử nghiệm: đường cắt phần tên và logo
+logo: "image/HUS Logo.jpg"
+content_type: 1 # kiểu khung 0 là tự viết, còn có kiểu khác
+titlepage_content: '` `{=latex}'
+# Thử nghiệm: để tùy chỉnh các mục như tên mã sinh viên bằng latex...
+
+# bìa trong
+second_titlepage_cover: true
+second_horizontal_line: '`\fontsize{11}{16}\Pisymbol{dingbat}{69} \hspace{1.4cm}  \Huge\usym{1F56E} \hspace{1cm} \fontsize{11}{16}\Pisymbol{dingbat}{70}`{=latex}'
+# Thử nghiệm: đường cắt phần tên và logo
+second_logo: "image/HUS Logo.jpg"
+second_content_type: 1 # kiểu khung 0 là tự viết, còn có kiểu khác như 1
+second_titlepage_content: '` `{=latex}'
+
+tables-vrules: true # Thử nghiệm: Bảng có đường kẻ dọc
+tables-hrules: true # Thử nghiệm: Bảng có đường kẻ ngang
+pandoc-latex-environment: # Thử nghiệm: Gắn môi trường latex với class
+  center: [center]
+  flushright: [right]
+---
