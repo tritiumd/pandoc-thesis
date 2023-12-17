@@ -39,7 +39,11 @@ vọng của mình.
 - Bước 3: Viết vào file main.md  
 - Bước 4: Chạy lệnh trong file compile.sh, có thể tắt các filter không dùng (tốt nhất là để nguyên). Có thể mở terminal ở 
 folder đó và copy lệnh trong file compile.sh rồi paste vào terminal đối với docker
-Có thể thay `.pdf` bằng `.docx` để xuất ra file word hoặc `.tex` để xuất ra file tex 
+
+Có thể thay `.pdf` bằng `.docx` để xuất ra file word hoặc `.tex` để xuất ra file tex.
+
+Phiên bản `vnthesis-oneside.tex` ở đây là phiên bản mới nhất không ổn định có thể có lỗi, nên dùng bản có sẵn trong docker.
+Nếu muốn dùng, hãy để trong folder của project 
 
 # Note
 Phần bìa sẽ cần rất nhiều tùy chỉnh để có thể phù hợp với mọi người nên sẽ rất mong mọi người đóng góp để hoàn thiện
