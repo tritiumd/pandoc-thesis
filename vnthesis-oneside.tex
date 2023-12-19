@@ -4,14 +4,14 @@
 $if(CJKmainfont)$
 \PassOptionsToPackage{space}{xeCJK}
 $endif$
-\documentclass[$if(fontsize)$$fontsize$$endif$,oneside]{$if(documentclass)$$documentclass$$else$scrbook$endif$}
+\documentclass[$if(fontsize)$$fontsize$$endif$,oneside]{$documentclass$}
 
 \usepackage{geometry}
 \geometry{a4paper,
     top=$if(top-margin)$$top-margin$$else$2.5cm$endif$,
     bottom=$if(bottom-margin)$$bottom-margin$$else$2.5cm$endif$,
     left=$if(left-margin)$$left-margin$$else$3cm$endif$,
-    right=$if(right-margin)$$right-margin$$else$ 2.5cm $endif$,
+    right=$if(right-margin)$$right-margin$$else$2.5cm$endif$,
 }
 
 \usepackage{iftex}
@@ -26,7 +26,6 @@ $endif$
 \setmainfont{$if(font)$$font$$else$Times New Roman$endif$}
 \defaultfontfeatures{Extension = .otf}
 \usepackage{fontawesome5}
-\usepackage{awesomebox}
 \usepackage{unicode-math}
 \usepackage{amsmath}
 \usepackage{utfsym}
@@ -43,7 +42,7 @@ $endif$
     aboveskip=5mm,
     belowskip=5mm,
     showstringspaces=false,
-    columns=flexible,
+    columns=table,
     basicstyle={\small\ttfamily},
     numbers=left,
     numberfirstline,
@@ -63,8 +62,6 @@ $endif$
     rulesepcolor=\color{bubblegum},
     rulecolor=\color{cyclamen},
     tabsize=2,
-    inputencoding=utf8,
-    extendedchars=true,
 }
 
 \usepackage[]{hyperref}
@@ -78,6 +75,7 @@ $endif$
     pdftitle={$title$},
 }
 
+% from pandoc
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -121,12 +119,24 @@ $if(number-sections)$
 $else$
     \setcounter{secnumdepth}{-\maxdimen}
 $endif$
+\titleformat{\chapter}
+{$if(title-format.chapter)$$title-format.chapter$$else$\bfseries\fontsize{14}{20}\selectfont\rmfamily$endif$}
+{\thechapter}{1em}{}
+
 \titleformat{\section}
-{\bfseries\fontsize{14}{20}\selectfont\rmfamily}{\thesection}{1em}{}
+{$if(title-format.section)$$title-format.section$$else$\bfseries\fontsize{14}{20}\selectfont\rmfamily$endif$}
+{\thesection}{1em}{}
+
 \titleformat{\subsection}
-{\bfseries\fontsize{14}{18}\selectfont\rmfamily}{\thesubsection}{1em}{}
+{$if(title-format.subsection)$$title-format.subsection$$else$\bfseries\fontsize{14}{18}\selectfont\rmfamily$endif$}
+{\thesubsection}{1em}{}
+
 \titleformat{\subsubsection}
-{\bfseries\fontsize{14}{16}\selectfont\rmfamily}{\thesubsubsection}{1em}{}
+{$if(title-format.subsubsection)$$title-format.subsubsection$$else$\bfseries\fontsize{14}{16}\selectfont\rmfamily$endif$}
+{\thesubsubsection}{1em}{}
+
+\usepackage{footnotebackref}
+
 %begin tables-vrules.lua
 \usepackage{longtable,booktabs,array, multirow}
 \usepackage{calc} % for calculating minipage widths
@@ -143,21 +153,38 @@ $endif$
 \renewcommand{\arraystretch}{1.3}
 %end tables-vrules.lua
 
-\usepackage{footnotebackref}
-
 $for(header-includes)$$header-includes$$endfor$
 
-$if(frame_type)$
+$for(customheader)$$customheader$$endfor$
+
+\usepackage{environ}
+\NewEnviron{centerboxed}{
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}[t][0.95\textheight][t]{\linewidth}%
+            \BODY
+\end{minipage}%
+}%
+}
+
+$if(toc)$
+\newcommand{\toc}[0]{
+\newpage\tableofcontents
+$if(toc.lof)$\newpage\listoffigures$endif$
+$if(toc.lot)$\newpage\listoftables$endif$
+}
+$endif$
+
 \usepackage{tikz}
-\usetikzlibrary{calc}
-\newcommand{\frontmatterthesisframe}[0]{
+$if(tikzlib)$\usetikzlibrary{$tikzlib$}$endif$
+$if(frame_type)$
+\newcommand{\frontmatterthesisframe}[2]{
     \begin{tikzpicture}[remember picture,overlay]
     \centering
-    \ifnum$frame_type$=0
-        $frame$
+    \ifnum#1=0
+        #2
     \fi
 
-    \ifnum$frame_type$=1
+    \ifnum#1=1
         \draw[blue!70!black,line width=4pt]
         ([xshift=-1.5cm,yshift=-2cm]current page.north east) coordinate (A)--
         ([xshift=3.5cm,yshift=-2cm]current page.north west) coordinate(B)--
@@ -193,7 +220,7 @@ $if(frame_type)$
         ([xshift=0.3cm,yshift=-0.3cm]A);
     \fi
 
-    \ifnum$frame_type$=2
+    \ifnum#1=2
         \draw [line width=2pt]
         ([xshift=3.5cm,yshift=-2.5cm]current page.north west)
         rectangle
@@ -204,7 +231,7 @@ $if(frame_type)$
         ([xshift=-2.1cm,yshift=2.6cm]current page.south east);
     \fi
 
-    \ifnum$frame_type$=3
+    \ifnum#1=3
         \draw[line width = 3pt]
         ([xshift=3.5cm,yshift=-2.5cm]current page.north west)
         rectangle
@@ -212,11 +239,13 @@ $if(frame_type)$
     \fi
     \end{tikzpicture}
 }
-$endif$
 
-\newcommand{\frontmatterthesisinfoout}[0]{
-    \noindent\makebox[\linewidth][c]{%
-        \begin{minipage}[t][0.95\textheight][t]{\linewidth}%
+\newcommand{\frontmatterthesisinfo}[2]{
+    \ifnum#1=0
+        #2
+    \fi
+    \ifnum#1=1
+        \begin{centerboxed}
             \centering
             \vspace*{3mm}
             \fontsize{14}{16}\selectfont $university$ \\
@@ -224,93 +253,41 @@ $endif$
             \fontsize{13}{16}\selectfont\textbf{$faculty$} \\
             $if(horizontal_line)$$horizontal_line$\\$endif$
             \vspace*{1.5cm}
-            $if(logo)$\includegraphics[width=0.5\linewidth]{$logo$}\\$endif$
-
-            \ifnum$content_type$=0
-                $titlepage_content$
-            \fi
-            \ifnum$content_type$=1
-                \vspace*{1.5cm}
-                \fontsize{18}{1}\selectfont \textbf{$title$} \\
-                \vspace{2cm}
-                $if(subtitle)${\fontsize{14}{16}\selectfont $subtitle$}  \\$endif$
-                $if(subject)${\fontsize{14}{16}\selectfont $subject$}  \\$endif$
-                $if(major)${\fontsize{14}{16}\selectfont Ngành: $major$}  \\$endif$
-                \vspace{2cm}
-                $if(instructor)$\fontsize{14}{1}\selectfont\textbf{Người hướng dẫn: $instructor$} \\$endif$
-                \vspace{2cm}
-                \raggedright{\hspace{4.2cm}\fontsize{14}{1}\selectfont \textbf{Người thực hiện:}\\}
-                \vspace{0.5cm}\hspace{5.5cm}
-                \begin{tabular}{ll}
-                $for(author)$$author.name$ & $author.id$ \\ \\[0.25em] $endfor$
-                \end{tabular}
-            \fi
-
-            \vfill
-            \centering
-            \fontsize{14}{14}\selectfont{\textbf{$position$$if(year)$ - $year$$endif$}}
-        \end{minipage}%
-    }
-}
-
-\newcommand{\frontmatterthesisinfoin}[0]{
-    \noindent\makebox[\linewidth][c]{%
-        \begin{minipage}[t][0.95\textheight][t]{\linewidth}%
-            \centering
-            \vspace*{3mm}
-            \fontsize{14}{16}\selectfont $university$ \\
-            $if(collage)$\fontsize{14}{16}\selectfont $collage$ \\$endif$
-            \fontsize{13}{16}\selectfont\textbf{$faculty$} \\
-            $if(horizontal_line)$$horizontal_line$\\$endif$
+            $if(logo)$\includegraphics[height=3cm,keepaspectratio]{"$logo$"}\\$endif$
             \vspace*{1.5cm}
-            $if(logo)$\includegraphics[width=0.5\linewidth]{$second_logo$}\\$endif$
-
-            \ifnum$second_content_type$=0
-                $second_titlepage_content$
-            \fi
-            \ifnum$second_content_type$=1
-                \vspace*{1.5cm}
-                \fontsize{18}{1}\selectfont \textbf{$title$} \\
-                \vspace{2cm}
-                $if(subtitle)${\fontsize{14}{16}\selectfont $subtitle$}  \\$endif$
-                $if(subject)${\fontsize{14}{16}\selectfont $subject$}  \\$endif$
-                $if(major)${\fontsize{14}{16}\selectfont Ngành: $major$}  \\$endif$
-                \vspace{2cm}
-                $if(instructor)$\fontsize{14}{1}\selectfont\textbf{Người hướng dẫn: $instructor$} \\$endif$
-                \vspace{2cm}
-                \raggedright{\hspace{4.2cm}\fontsize{14}{1}\selectfont \textbf{Người thực hiện:}\\}
-                \vspace{0.5cm}\hspace{5.5cm}
-                \begin{tabular}{ll}
-                $for(author)$$author.name$ & $author.id$ \\ \\[0.25em] $endfor$
-                \end{tabular}
-            \fi
-
+            \fontsize{18}{1}\selectfont \textbf{$title$} \\
+            \vspace{2cm}
+            $if(subtitle)${\fontsize{14}{16}\selectfont $subtitle$}  \\$endif$
+            $if(subject)${\fontsize{14}{16}\selectfont $subject$}  \\$endif$
+            $if(major)${\fontsize{14}{16}\selectfont Ngành: $major$}  \\$endif$
+            \vspace{2cm}
+            $if(instructor)$\fontsize{14}{1}\selectfont\textbf{Người hướng dẫn: $instructor$} \\$endif$
+            \vspace{2cm}
+            \raggedright{\hspace{4.2cm}\fontsize{14}{1}\selectfont \textbf{Người thực hiện:}\\}
+            \vspace{0.5cm}\hspace{5.5cm}
+            \begin{tabular}{ll}
+            $for(author)$$author.name$ & $author.id$ \\ \\[0.25em] $endfor$
+            \end{tabular}
             \vfill
             \centering
             \fontsize{14}{14}\selectfont{\textbf{$position$$if(year)$ - $year$$endif$}}
-        \end{minipage}%
-    }
+        \end{centerboxed}
+    \fi
 }
-$if(toc)$
-    \newcommand{\toc}[0]{
-        \newpage\tableofcontents
-        $if(toc.lof)$\newpage\listoffigures$endif$
-        $if(toc.lot)$\newpage\listoftables$endif$
-    }
 $endif$
 
 \begin{document}
 \frontmatter
 $if(titlepage_cover)$
 \begin{titlepage}
-    \frontmatterthesisframe
-    \frontmatterthesisinfoout
+    \frontmatterthesisframe{$frame_type$}{$frame$}
+    \frontmatterthesisinfo{$content_type$}{$titlepage_content$}
 \end{titlepage}
 $endif$
 $if(second_titlepage_cover)$
 \begin{titlepage}
-    \frontmatterthesisframe
-    \frontmatterthesisinfoin
+    \frontmatterthesisframe{$frame_type$}{$frame$}
+    \frontmatterthesisinfo{$second_content_type$}{$second_titlepage_content$}
 \end{titlepage}
 $endif$
 \mainmatter
