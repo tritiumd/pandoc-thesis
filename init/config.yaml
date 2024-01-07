@@ -22,6 +22,7 @@ logo: "image/HUS Logo.jpg"
 # Mục nào đánh dấu thử nghiệm xóa hay sửa có thể gây lỗi
 documentclass: scrbook
 fontsize: 14pt # Kích thước phông chữ
+twoside: true # In 2 mặt
 top-margin: 2.5cm # Lề trên
 bottom-margin: 2.5cm # Lề dưới
 left-margin: 3cm # Lề trái

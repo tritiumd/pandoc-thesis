@@ -42,7 +42,7 @@ folder đó và copy lệnh trong file compile.sh rồi paste vào terminal đ�
 
 Có thể thay `.pdf` bằng `.docx` để xuất ra file word hoặc `.tex` để xuất ra file tex.
 
-Phiên bản `vnthesis-oneside.tex` ở đây là phiên bản mới nhất không ổn định có thể có lỗi, nên dùng bản có sẵn trong docker.
+Phiên bản `vnthesis.tex` ở đây là phiên bản mới nhất không ổn định có thể có lỗi, nên dùng bản có sẵn trong docker.
 Nếu muốn dùng, hãy để trong folder của project 
 
 # Note
