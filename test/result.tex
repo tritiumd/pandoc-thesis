@@ -1,17 +1,14 @@
-\PassOptionsToPackage{unicode$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
+\PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names,table}{xcolor}
-$if(CJKmainfont)$
-\PassOptionsToPackage{space}{xeCJK}
-$endif$
-\documentclass[$if(fontsize)$$fontsize$$endif$,$if(twoside)$twoside$else$oneside$endif$]{$documentclass$}
+\documentclass[14pt,oneside]{scrbook}
 
 \usepackage{geometry}
 \geometry{a4paper,
-    top=$if(top-margin)$$top-margin$$else$2.5cm$endif$,
-    bottom=$if(bottom-margin)$$bottom-margin$$else$2.5cm$endif$,
-    left=$if(left-margin)$$left-margin$$else$3cm$endif$,
-    right=$if(right-margin)$$right-margin$$else$2.5cm$endif$,
+    top=2.5cm,
+    bottom=2.5cm,
+    left=3cm,
+    right=2.5cm,
 }
 
 \usepackage{iftex}
@@ -23,7 +20,7 @@ $endif$
 
 \usepackage{fontspec}
 \usepackage{pifont}
-\setmainfont{$if(font)$$font$$else$Times New Roman$endif$}
+\setmainfont{Times New Roman}
 \defaultfontfeatures{Extension = .otf}
 \usepackage{fontawesome5}
 \usepackage{unicode-math}
@@ -59,7 +56,7 @@ $endif$
     breaklines=true,
     breakatwhitespace=false,
     breakautoindent=true,
-    postbreak=\mbox{\textcolor{deepblue}{$$\hookrightarrow$$}\space},
+    postbreak=\mbox{\textcolor{deepblue}{$\hookrightarrow$}\space},
     frame=shadowbox,
     rulesepcolor=\color{bubblegum},
     rulecolor=\color{cyclamen},
@@ -75,7 +72,7 @@ $endif$
     linkcolor=black,
     filecolor=bubblegum,
     urlcolor=deepblue,
-    pdftitle={$title$},
+    pdftitle={Tool tạo pdf báo cáo từ markdown},
 }
 
 % from pandoc
@@ -127,62 +124,43 @@ $endif$
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
-$if(natbib)$
-\usepackage[$natbiboptions$]{natbib}
-\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
-$endif$
-$if(biblatex)$
-\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
-$for(bibliography)$
-\addbibresource{$bibliography$}
-$endfor$
-$endif$
-$if(nocite-ids)$
-\nocite{$for(nocite-ids)$$it$$sep$, $endfor$}
-$endif$
 % end from pandoc
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-$pagestyle$
+\fancyhead[L]{\includegraphics[height=1cm,keepaspectratio]{image/Khoa Toán - Cơ - Tin học.png}} \fancyhead[R]{\small\leftmark} \fancyfoot[C]{\thepage}
 \fancypagestyle{plain}{%
     \fancyhf{}
-    $pagestyle$
+    \fancyhead[L]{\includegraphics[height=1cm,keepaspectratio]{image/Khoa Toán - Cơ - Tin học.png}} \fancyhead[R]{\small\leftmark} \fancyfoot[C]{\thepage}
 }
 
 \usepackage{titlesec}
-$if(toc)$
-   \setcounter{tocdepth}{$if(toc.tocdepth)$$toc.tocdepth$$else$2$endif$}
-$endif$
-\renewcommand{\baselinestretch}{$if(line-spacing)$$line-spacing$$else$1$endif$}
+   \setcounter{tocdepth}{2}
+\renewcommand{\baselinestretch}{1}
 \usepackage{indentfirst}
-\setlength{\parindent}{$if(indent)$$indent$$else$14pt$endif$}
-\setlength{\parskip}{$parskip$$if(parskip)$$else$6pt$endif$}
+\setlength{\parindent}{14pt}
+\setlength{\parskip}{6pt}
 
-$if(number-sections)$
     \setcounter{secnumdepth}{4}
-    \renewcommand{\thechapter}{$if(number-sections.chapter)$$number-sections.chapter$$else$\arabic{chapter}$endif$}
-    \renewcommand{\thesection}{$if(number-sections.section)$$number-sections.section$$else$\thechapter.\arabic{section}$endif$}
-    \renewcommand{\thesubsection}{$if(number-sections.subsection)$$number-sections.subsection$$else$\thesection.\arabic{subsection}$endif$}
-    \renewcommand{\thesubsubsection}{$if(number-sections.subsubsection)$$number-sections.subsubsection$$else$\thesubsection.\arabic{subsubsection}$endif$}
-$else$
-    \setcounter{secnumdepth}{-\maxdimen}
-$endif$
+    \renewcommand{\thechapter}{\arabic{chapter}}
+    \renewcommand{\thesection}{\thechapter.\arabic{section}}
+    \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+    \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
 \titleformat{\chapter}
-{$if(title-format.chapter)$$title-format.chapter$$else$\bfseries\fontsize{14}{20}\selectfont\rmfamily$endif$}
+{\bfseries\fontsize{16}{20}\selectfont}
 {\thechapter}{1em}{}
 
 \titleformat{\section}
-{$if(title-format.section)$$title-format.section$$else$\bfseries\fontsize{14}{20}\selectfont\rmfamily$endif$}
+{\bfseries\fontsize{16}{20}\selectfont}
 {\thesection}{1em}{}
 
 \titleformat{\subsection}
-{$if(title-format.subsection)$$title-format.subsection$$else$\bfseries\fontsize{14}{18}\selectfont\rmfamily$endif$}
+{\bfseries\fontsize{16}{18}\selectfont}
 {\thesubsection}{1em}{}
 
 \titleformat{\subsubsection}
-{$if(title-format.subsubsection)$$title-format.subsubsection$$else$\bfseries\fontsize{14}{16}\selectfont\rmfamily$endif$}
+{\bfseries\fontsize{16}{16}\selectfont}
 {\thesubsubsection}{1em}{}
 
 \usepackage{footnotebackref}
@@ -203,11 +181,24 @@ $endif$
 \renewcommand{\arraystretch}{1.3}
 %end tables-vrules.lua
 
-$for(header-includes)$
-    $header-includes$
-$endfor$
+%begin tables-vrules.lua
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.3}
+%end tables-vrules.lua\usepackage{multicol}
+  \newlength{\currentparskip}
 
-$for(customheader)$$customheader$$endfor$
+
 
 \usepackage{environ}
 \NewEnviron{centerboxed}{
@@ -220,24 +211,21 @@ $for(customheader)$$customheader$$endfor$
 
 \NewEnviron{sign}{
     \hfill\begin{tabular}{c}
-        {\it $if(position)$$position$, $endif$$if(day)$ngày $day$ $endif$$if(month)$tháng $month$ $endif$$if(year)$năm $year$$endif$}
+        {\it Hà Nội, ngày 5 tháng 11 năm 2023}
         \\ \BODY
         \\ \\[1cm]
-        {$if(author)$\bf $firstauthor$$endif$}\\
+        {\bf Phan Thanh Ngọc}\\
     \end{tabular}%
 }
 
-$if(toc)$
 \newcommand{\toc}[0]{
 \tableofcontents
-$if(toc.lof)$\listoffigures$endif$
-$if(toc.lot)$\listoftables$endif$
+\listoffigures
+\listoftables
 }
-$endif$
 
 \usepackage{tikz}
-$if(tikzlib)$\usetikzlibrary{$tikzlib$}$endif$
-$if(frame_type)$
+\usetikzlibrary{calc}
 \newcommand{\frontmatterthesisframe}[2]{
     \begin{tikzpicture}[remember picture,overlay]
     \centering
@@ -309,53 +297,208 @@ $if(frame_type)$
         \begin{centerboxed}
             \centering
             \vspace*{3mm}
-            \fontsize{14}{16}\selectfont $university$ \\
-            $if(collage)$\fontsize{14}{16}\selectfont $collage$ \\$endif$
-            \fontsize{13}{16}\selectfont\textbf{$faculty$} \\
-            $if(horizontal_line)$$horizontal_line$\\$endif$
+            \fontsize{14}{16}\selectfont Đại học Quốc gia Hà Nội \\
+            \fontsize{14}{16}\selectfont Trường Đại học Khoa học Tự
+nhiên \\
+            \fontsize{13}{16}\selectfont\textbf{Khoa Toán - Cơ - Tin
+học} \\
+            \fontsize{8}{16}\Pisymbol{dingbat}{69} \hspace{1.4cm}  \Huge\usym{1F56E} \hspace{1cm} \fontsize{8}{16}\Pisymbol{dingbat}{70}\\
             \vspace*{1.5cm}
-            $if(logo)$\includegraphics[height=3cm,keepaspectratio]{"$logo$"}\\$endif$
+            \includegraphics[height=3cm,keepaspectratio]{"image/HUS
+Logo.jpg"}\\
             \vspace*{1.5cm}
-            \fontsize{18}{1}\selectfont \textbf{$title$} \\
+            \fontsize{18}{1}\selectfont \textbf{Tool tạo pdf báo cáo từ
+markdown} \\
             \vspace{2cm}
-            $if(subtitle)${\fontsize{14}{16}\selectfont $subtitle$}  \\$endif$
-            $if(subject)${\fontsize{14}{16}\selectfont $subject$}  \\$endif$
-            $if(major)${\fontsize{14}{16}\selectfont Ngành: $major$}  \\$endif$
+            {\fontsize{14}{16}\selectfont Báo cáo cuối môn học}  \\
+            {\fontsize{14}{16}\selectfont Thực tập thực tế phát triển
+phần mềm}  \\
+            {\fontsize{14}{16}\selectfont Ngành: Toán tin}  \\
             \vspace{2cm}
-            $if(instructor)$\fontsize{14}{1}\selectfont\textbf{Người hướng dẫn: $instructor$} \\$endif$
+            \fontsize{14}{1}\selectfont\textbf{Người hướng dẫn: Phan
+Thanh Ngọc} \\
             \vspace{2cm}
             \raggedright{\hspace{4.2cm}\fontsize{14}{1}\selectfont \textbf{Người thực hiện:}\\}
             \vspace{0.5cm}\hspace{5.5cm}
             \begin{tabular}{ll}
-            $for(author)$$author.name$ & $author.id$ \\ \\[0.25em] $endfor$
+            Phan Thanh Ngọc & 20000001 \\ \\[0.25em] Phan Thanh
+Ngọc & 20000001 \\ \\[0.25em] 
             \end{tabular}
             \vfill
             \centering
-            \fontsize{14}{14}\selectfont{\textbf{$position$$if(year)$ - $year$$endif$}}
+            \fontsize{14}{14}\selectfont{\textbf{Hà Nội - 2023}}
         \end{centerboxed}
     \fi
 }
-$endif$
 
 \begin{document}
 \frontmatter
 \pagestyle{empty}
-$if(titlepage_cover)$
 \begin{titlepage}
-    \frontmatterthesisframe{$frame_type$}{$frame$}
-    \frontmatterthesisinfo{$content_type$}{$titlepage_content$}
+    \frontmatterthesisframe{1}{}
+    \frontmatterthesisinfo{1}{}
 \end{titlepage}
-$if(twoside)$\newpage$endif$
-$endif$
-$if(second_titlepage_cover)$
+
 \begin{titlepage}
-    \frontmatterthesisframe{$frame_type$}{$frame$}
-    \frontmatterthesisinfo{$second_content_type$}{$second_titlepage_content$}
+    \frontmatterthesisframe{1}{}
+    \frontmatterthesisinfo{1}{}
 \end{titlepage}
-$if(twoside)$\newpage$endif$
-$endif$
+
 \mainmatter
 \pagestyle{fancy}
-$body$
+\chapter*{Lời mở đầu}\label{lux1eddi-mux1edf-ux111ux1ea7u}
+\addcontentsline{toc}{chapter}{Lời mở đầu}
+
+Tui xin tự cảm ơn tui vì lười gõ latex mà lại chăm ngồi code latex để đẻ
+ra con này
+
+\begin{sign}
+
+Sinh viên
+
+\end{sign}
+
+\toc
+
+\chapter{Ví dụ cách sử
+dụng}\label{vuxed-dux1ee5-cuxe1ch-sux1eed-dux1ee5ng}
+
+\section{Đoạn văn}\label{ux111oux1ea1n-vux103n}
+
+Đây là một đoạn văn ví dụ. Trích dẫn theo (\citeproc{ref-texbook}{Cicero
+45BC}): ``Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Maecenas sagittis eleifend molestie. In fringilla enim dolor. Praesent
+lacinia dui velit, at ullamcorper orci laoreet non. Nullam placerat
+efficitur leo a ornare. Duis condimentum, tortor vitae pellentesque
+venenatis, lorem urna gravida nibh, a fermentum est nunc at magna. Sed
+posuere arcu odio, posuere porta libero eleifend vel. Maecenas ut metus
+quam. Praesent vitae euismod nisl. Morbi tincidunt nulla eget lacus
+sagittis aliquet. Aliquam condimentum commodo lacus, quis convallis quam
+volutpat id. Proin lobortis, sapien et fermentum faucibus, lacus est
+tincidunt augue, quis facilisis elit nisi non nisl. Donec et odio sit
+amet ligula laoreet convallis non quis nulla.''
+
+Đoạn văn thứ 2. Chân trang \footnote{Chân trang}
+
+\section{Bảng biểu}\label{bux1ea3ng-biux1ec3u}
+
+\begin{longtable}[]{|
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep - 5\arrayrulewidth) * \real{0.3056}}|
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep - 5\arrayrulewidth) * \real{0.1111}}|
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep - 5\arrayrulewidth) * \real{0.1111}}|
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep - 5\arrayrulewidth) * \real{0.1111}}|}
+\caption{Bảng phức tạp}\tabularnewline
+\toprule\noalign{}
+\multirow{2}{=}{\begin{minipage}[b]{\linewidth}\smallskip
+\raggedright
+Location
+\end{minipage}} &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3333} + 4\tabcolsep -2\tabcolsep -2\arrayrulewidth}|}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+Temperature 1961-1990 in degree Celsius
+\end{minipage}} \\
+& \begin{minipage}[b]{\linewidth}\raggedright
+min
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+max
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\multirow{2}{=}{\begin{minipage}[b]{\linewidth}\raggedright
+Location
+\end{minipage}} &
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3333} + 4\tabcolsep -2\tabcolsep -2\arrayrulewidth}|}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+Temperature 1961-1990 in degree Celsius
+\end{minipage}} \\
+& \begin{minipage}[b]{\linewidth}\raggedright
+min
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+max
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Antarctica & -89.2 & N/A & 19.8 \\
+\midrule
+Earth & -89.2 & 14 & 56.7 \\
+\end{longtable}
+
+\begin{longtable}[]{|r|l|l|c|}
+\caption{Bảng đơn giản}\tabularnewline
+\toprule\noalign{}
+Right & Left & Default & Center \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Right & Left & Default & Center \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+12 & 12 & 12 & 12 \\
+\midrule
+123 & 123 & 123 & 123 \\
+\midrule
+1 & 1 & 1 & 1 \\
+\end{longtable}
+
+\section{Hình ảnh}\label{huxecnh-ux1ea3nh}
+
+\begin{figure}
+\centering
+\includegraphics{image/HUS logo.jpg}
+\caption{Ảnh}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{e008901efeda44545fb27b32f54afcbabc0f94ef.pdf}
+\caption{A simple flowchart.}
+\end{figure}
+
+\subsection{Code}\label{code}
+
+Inline: \passthrough{\lstinline[language=Python]!print("hello")!}
+
+code block:
+
+\begin{lstlisting}[language=Python, caption={hello world}]
+print("hello")
+\end{lstlisting}
+
+Thêm từ file
+
+\begin{lstlisting}
+@book{texbook,
+    author = {Cicero},
+    year = {45BC},
+    title = {De Finibus Bonorum et Malorum},
+}
+\end{lstlisting}
+
+\subsection{Biểu thức toán
+học}\label{biux1ec3u-thux1ee9c-touxe1n-hux1ecdc}
+
+Inline: \(a+b\)
+
+Block: \[a+b\]
+
+\chapter{Tài liệu tham khảo}\label{tuxe0i-liux1ec7u-tham-khux1ea3o}
+
+\phantomsection\label{refs-main}
+\begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-texbook}
+Cicero. 45BC. \emph{De Finibus Bonorum Et Malorum}.
+
+\end{CSLReferences}
+
+\chapter{Phụ lục}\label{phux1ee5-lux1ee5c}
 \backmatter
 \end{document}

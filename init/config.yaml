@@ -22,7 +22,7 @@ logo: "image/HUS Logo.jpg"
 # Mục nào đánh dấu thử nghiệm xóa hay sửa có thể gây lỗi
 documentclass: scrbook
 fontsize: 14pt # Kích thước phông chữ
-twoside: true # In 2 mặt
+twoside: false # In 2 mặt để true
 top-margin: 2.5cm # Lề trên
 bottom-margin: 2.5cm # Lề dưới
 left-margin: 3cm # Lề trái
@@ -54,8 +54,8 @@ title-format:
 # Thử nghiệm: tự viết định dạng tiêu đề
 toc:
   tocdepth: 2 # Độ sâu của mục lục default 2 do tính từ 0
-  lof: false # Mục lục hình
-  lot: false # Mục lục bảng
+  lof: true # Mục lục hình
+  lot: true # Mục lục bảng
 # bìa
 horizontal_line: '`\fontsize{8}{16}\Pisymbol{dingbat}{69} \hspace{1.4cm}  \Huge\usym{1F56E} \hspace{1cm} \fontsize{8}{16}\Pisymbol{dingbat}{70}`{=latex}'
 frame_type: 1 # kiểu khung 0 là tự viết, còn có khung 1,2,3
@@ -77,5 +77,10 @@ pandoc-latex-environment: # Thử nghiệm: Gắn môi trường latex với cla
   center: [center]
   flushright: [right]
   centerboxed: [centerboxed]
+  sign: [sign]
 customheader: '` `{=latex}'
+# Thử nghiệm: Tham chiếu bằng file bib
+bibliography:
+  main: refs.bib
+link-citations: true
 ---
