@@ -1,0 +1,7 @@
+{
+    "name": "Pandoc",
+    "image": "ngocptblaplafla/pandoc-texlive-full:latest",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+    ]
+  }
