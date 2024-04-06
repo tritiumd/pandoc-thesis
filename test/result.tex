@@ -181,22 +181,23 @@
 \renewcommand{\arraystretch}{1.3}
 %end tables-vrules.lua
 
-%begin tables-vrules.lua
-\usepackage{longtable,booktabs,array}
-\usepackage{calc} % for calculating minipage widths
-% Correct order of tables after \paragraph or \subparagraph
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
-\makeatother
-% Allow footnotes in longtable head/foot
-\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-\makesavenoteenv{longtable}
-\setlength{\aboverulesep}{0pt}
-\setlength{\belowrulesep}{0pt}
-\renewcommand{\arraystretch}{1.3}
-%end tables-vrules.lua\usepackage{multicol}
-  \newlength{\currentparskip}
+    %begin tables-vrules.lua
+    \usepackage{longtable,booktabs,array}
+    \usepackage{calc} % for calculating minipage widths
+    % Correct order of tables after \paragraph or \subparagraph
+    \usepackage{etoolbox}
+    \makeatletter
+    \patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+    \makeatother
+    % Allow footnotes in longtable head/foot
+    \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+    \makesavenoteenv{longtable}
+    \setlength{\aboverulesep}{0pt}
+    \setlength{\belowrulesep}{0pt}
+    \renewcommand{\arraystretch}{1.3}
+    %end tables-vrules.lua
+    \usepackage{multicol}
+      \newlength{\currentparskip}
 
 
 
@@ -349,6 +350,8 @@ Ngọc & 20000001 \\ \\[0.25em]
 \chapter*{Lời mở đầu}\label{lux1eddi-mux1edf-ux111ux1ea7u}
 \addcontentsline{toc}{chapter}{Lời mở đầu}
 
+\markboth{Lời mở đầu}{Lời mở đầu}
+
 Tui xin tự cảm ơn tui vì lười gõ latex mà lại chăm ngồi code latex để đẻ
 ra con này
 
@@ -459,7 +462,7 @@ Right & Left & Default & Center \\
 
 \begin{figure}
 \centering
-\includegraphics{e008901efeda44545fb27b32f54afcbabc0f94ef.pdf}
+\includegraphics{a5a43052df7ffdec67db1c75c3cc4810b2b97d83.pdf}
 \caption{A simple flowchart.}
 \end{figure}
 
