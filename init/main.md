@@ -1,3 +1,24 @@
+---
+#Tùy chỉnh thông tin
+university: Đại học Quốc gia Hà Nội # Tên đại học
+collage: Trường Đại học Khoa học Tự nhiên # Tên trường
+faculty: Khoa Toán - Cơ - Tin học # Tên khoa
+subject: Thực tập thực tế phát triển phần mềm # Tên môn học
+major: Toán tin # Ngành học
+title: Tool tạo pdf báo cáo từ markdown # Tên đề tài
+subtitle: Báo cáo cuối môn học # Tên phụ
+instructor: Phan Thanh Ngọc # Tên giáo viên hướng dẫn
+author:
+  - name: Phan Thanh Ngọc # Tên tác giả
+    id: 20000001 # Mã số sinh viên
+  - name: Phan Thanh Ngọc # Tên tác giả
+    id: 20000001 # Mã số sinh viên
+position: Hà Nội
+day: 05 # Ngày
+month: 11 # Tháng
+year: 2023 # Năm
+logo: "image/HUS Logo.jpg"
+---
 # Lời mở đầu {-}
 Tui xin tự cảm ơn tui vì lười gõ latex mà lại chăm ngồi code latex để đẻ ra con này
 
