@@ -9,6 +9,15 @@ bottom-margin: 2.5cm # Lề dưới
 left-margin: 3cm # Lề trái
 right-margin: 2.5cm # Lề phải
 font: Times New Roman # Kiểu phông chữ
+# Thử nghiệm: monofont
+monofont: '`{JetBrainsMono}[
+  Path = /usr/share/fonts/jetbrains-mono/,
+  Extension = .ttf,
+  UprightFont    = *-Regular,
+  ItalicFont     = *-Italic,
+  BoldFont       = *-Bold,
+  BoldItalicFont = *-BoldItalic,
+]`{=latex}'
 line-spacing: 1 # Khoảng cách giữa các dòng
 indent: 14pt # Khoảng cách thụt đầu dòng
 parskip: 6pt # Khoảng cách giữa các đoạn
