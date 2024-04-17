@@ -17,7 +17,7 @@ position: Hà Nội
 day: 05 # Ngày
 month: 11 # Tháng
 year: 2023 # Năm
-logo: "image/HUS Logo.jpg"
+logo: "image/logo.jpg"
 ---
 # Lời mở đầu {-}
 Tui xin tự cảm ơn tui vì lười gõ latex mà lại chăm ngồi code latex để đẻ ra con này
@@ -62,7 +62,7 @@ Sinh viên
 
 ## Hình ảnh 
 
-![Ảnh](image/HUS logo.jpg)
+![Ảnh](image/logo.jpg)
 
 ```mermaid
 %%| fig-cap: A simple flowchart.
