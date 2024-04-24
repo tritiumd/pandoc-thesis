@@ -14,6 +14,29 @@ $endif$
     right=$if(right-margin)$$right-margin$$else$2.5cm$endif$,
 }
 
+% vnthesis mới đã có phần package pseudocode.
+% Nằm trong init.
+% PSEUDO-CODE
+\usepackage{algorithm}
+\usepackage[noEnd=false,indLines=false]{algpseudocodex}
+
+\newcommand{\And}{\textbf{and~}}
+\newcommand{\Or}{\textbf{or~}}
+\newcommand{\Xor}{\textbf{xor~}}
+\newcommand{\Not}{\textbf{not~}}
+\newcommand{\To}{\textbf{to~}}
+\newcommand{\DownTo}{\textbf{downto~}}
+\newcommand{\True}{\textbf{true~}}
+\newcommand{\False}{\textbf{false~}}
+\newcommand{\Input}{\item[\textbf{Input:}]}
+\renewcommand{\Output}{\item[\textbf{Output:}]}
+\newcommand{\Print}{\State \textbf{print~}}
+\renewcommand{\Return}{\State \textbf{return~}}
+% END PSEUDO-CODE.
+
+% For include other files
+\usepackage{subfiles} % Best loaded last in the preamble
+
 \usepackage{iftex}
 
 \usepackage[utf8]{vietnam}
@@ -199,7 +222,7 @@ $endif$
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
-\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\tightlist}{\setlength{\itemsep}{4pt}\setlength{\parskip}{0pt}}
 % definitions for citeproc citations
 \NewDocumentCommand\citeproctext{}{}
 \NewDocumentCommand\citeproc{mm}{%
@@ -445,6 +468,9 @@ $endif$
 tocentryformat=\usekomafont{chapter},
 tocpagenumberformat=\usekomafont{chapter}
 ]{chapter}
+
+% DOCUMENT
+
 \begin{document}
 \frontmatter
 \pagestyle{empty}
@@ -467,3 +493,4 @@ $endif$
 $body$
 \backmatter
 \end{document}
+% END DOCUMENT
