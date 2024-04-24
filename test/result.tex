@@ -16,57 +16,105 @@
 \usepackage[utf8]{vietnam}
 \usepackage[utf8]{inputenc}
 \usepackage[vietnamese]{babel}
-\usepackage[vietnamese=nohyphenation]{hyphsubst}
 
 \usepackage{fontspec}
 \usepackage{pifont}
-\setmainfont{Times New Roman}
-\defaultfontfeatures{Extension = .otf}
+\setmainfont{Times New Roman}[
+    ]
+\setmonofont{JetBrainsMono}[
+        Path = /usr/share/fonts/jetbrains-mono/,
+        Extension = .ttf,
+        UprightFont = *-Regular,
+        ItalicFont = *-Italic,
+        BoldFont = *-Bold,
+        BoldItalicFont = *-BoldItalic,
+    ]
+    
 \usepackage{fontawesome5}
 \usepackage{unicode-math}
 \usepackage{amsmath}
 \usepackage{utfsym}
 \usepackage{pmboxdraw}
-\usepackage{noto-mono}
 
 \usepackage{xcolor}
 \definecolor{deepblue}{RGB}{0, 0, 112}
-\definecolor{deepgreen}{RGB}{0, 112, 0}
-\definecolor{deepred}{RGB}{153, 0, 0}
 \definecolor{cyclamen}{RGB}{255, 145, 237}
 \definecolor{bubblegum}{RGB}{255, 115, 232}
+\definecolor{silver}{RGB}{208,208,208}
 
-\usepackage{listings}
-\lstset{
-    aboveskip=5mm,
-    belowskip=5mm,
-    showstringspaces=false,
-    columns=flexible,
-    basicstyle={\small\notomono},
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.33,0.33}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.42,0.45,0.49}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.84,0.23,0.29}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.36,0.77}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.84,0.23,0.29}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.01,0.18,0.38}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.42,0.45,0.49}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.42,0.45,0.49}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.36,0.77}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.84,0.23,0.29}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.84,0.23,0.29}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.36,0.77}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.42,0.45,0.49}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.33,0.33}{\underline{#1}}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.84,0.23,0.29}{\textbf{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.36,0.77}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.44,0.26,0.76}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.01,0.18,0.38}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.42,0.45,0.49}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.84,0.23,0.29}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.14,0.16,0.18}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.14,0.16,0.18}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.44,0.26,0.76}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.84,0.23,0.29}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.42,0.45,0.49}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.36,0.77}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.01,0.18,0.38}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.01,0.18,0.38}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.89,0.38,0.04}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.01,0.30,0.58}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{1.00,0.33,0.33}{#1}}
+\renewcommand{\theFancyVerbLine}{\sffamily \textcolor[rgb]{0.5,0.5,1.0}{\small \oldstylenums{\arabic{FancyVerbLine}}}}
+\usepackage{fvextra}
+\RecustomVerbatimEnvironment{Highlighting}{Verbatim}{
     numbers=left,
+    xleftmargin=1.5em,
+    fontsize=\normalsize,
     numberfirstline,
-    firstnumber=1,
+    breaknonspaceingroup=true,
     stepnumber=5,
-    numberstyle=\small\color{gray},
-    keywordstyle=\bfseries\color{deepblue},
-    commentstyle=\itshape\color{deepgreen},
-    stringstyle=\color{bubblegum},
-    emphstyle=\color{deepred},
-    keepspaces=true,
     breaklines=true,
-    breakatwhitespace=false,
+    breakanywhere=true,
     breakautoindent=true,
-    postbreak=\mbox{\textcolor{deepblue}{$\hookrightarrow$}\space},
-    frame=shadowbox,
-    rulesepcolor=\color{bubblegum},
-    rulecolor=\color{cyclamen},
     tabsize=2,
-    texcl=true,
+    frame=single,
+    framesep=3mm,
+    rulecolor=\color{silver},
+    commandchars=\\\{\}
+}\RecustomVerbatimEnvironment{verbatim}{Verbatim}{
+    numbers=left,
+    xleftmargin=1.5em,
+    fontsize=\normalsize,
+    numberfirstline,
+    breaknonspaceingroup=true,
+    stepnumber=5,
+    breaklines=true,
+    breakanywhere=true,
+    breakautoindent=true,
+    tabsize=2,
+    frame=single,
+    framesep=3mm,
+    rulecolor=\color{silver},
 }
 
 \usepackage[]{hyperref}
 \usepackage{bookmark}
-\usepackage{color}
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
@@ -129,24 +177,24 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\includegraphics[height=1cm,keepaspectratio]{image/Khoa Toán - Cơ - Tin học.png}} \fancyhead[R]{\small\leftmark} \fancyfoot[C]{\thepage}
+\fancyhead[L]{\includegraphics[height=1cm,keepaspectratio]{image/page-header-logo.png}} \fancyhead[R]{\small\leftmark} \fancyfoot[C]{\thepage}
 \fancypagestyle{plain}{%
-    \fancyhf{}
-    \fancyhead[L]{\includegraphics[height=1cm,keepaspectratio]{image/Khoa Toán - Cơ - Tin học.png}} \fancyhead[R]{\small\leftmark} \fancyfoot[C]{\thepage}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=1cm,keepaspectratio]{image/page-header-logo.png}} \fancyhead[R]{\small\leftmark} \fancyfoot[C]{\thepage}
 }
 
 \usepackage{titlesec}
-   \setcounter{tocdepth}{2}
+\setcounter{tocdepth}{2}
 \renewcommand{\baselinestretch}{1}
 \usepackage{indentfirst}
 \setlength{\parindent}{14pt}
 \setlength{\parskip}{6pt}
 
-    \setcounter{secnumdepth}{4}
-    \renewcommand{\thechapter}{\arabic{chapter}}
-    \renewcommand{\thesection}{\thechapter.\arabic{section}}
-    \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
-    \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\setcounter{secnumdepth}{4}
+\renewcommand{\thechapter}{\arabic{chapter}}
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
 \titleformat{\chapter}
 {\bfseries\fontsize{16}{20}\selectfont}
 {\thechapter}{1em}{}
@@ -181,42 +229,47 @@
 \renewcommand{\arraystretch}{1.3}
 %end tables-vrules.lua
 
-    %begin tables-vrules.lua
-    \usepackage{longtable,booktabs,array}
-    \usepackage{calc} % for calculating minipage widths
-    % Correct order of tables after \paragraph or \subparagraph
-    \usepackage{etoolbox}
-    \makeatletter
-    \patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
-    \makeatother
-    % Allow footnotes in longtable head/foot
-    \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-    \makesavenoteenv{longtable}
-    \setlength{\aboverulesep}{0pt}
-    \setlength{\belowrulesep}{0pt}
-    \renewcommand{\arraystretch}{1.3}
-    %end tables-vrules.lua
-    \usepackage{multicol}
-      \newlength{\currentparskip}
 
-
+%begin tables-vrules.lua
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.3}
+%end tables-vrules.lua
+\usepackage{multicol}
+  \newlength{\currentparskip}
+\usepackage{newfloat}
+\DeclareFloatingEnvironment[
+    fileext=los,
+    name=Verbatim,
+    placement=tbhp,
+]{coding}
 
 \usepackage{environ}
 \NewEnviron{centerboxed}{
 \noindent\makebox[\linewidth][c]{%
 \begin{minipage}[t][0.95\textheight][t]{\linewidth}%
-            \BODY
+\BODY
 \end{minipage}%
 }%
 }
 
 \NewEnviron{sign}{
-    \hfill\begin{tabular}{c}
-        {\it Hà Nội, ngày 5 tháng 11 năm 2023}
-        \\ \BODY
-        \\ \\[1cm]
-        {\bf Phan Thanh Ngọc}\\
-    \end{tabular}%
+\hfill\begin{tabular}{c}
+{\it Hà Nội, ngày 5 tháng 11 năm 2023}
+\\ \BODY
+\\ \\[1cm]
+{\bf Phan Thanh Ngọc}\\
+\end{tabular}%
 }
 
 \newcommand{\toc}[0]{
@@ -228,121 +281,120 @@
 \usepackage{tikz}
 \usetikzlibrary{calc}
 \newcommand{\frontmatterthesisframe}[2]{
-    \begin{tikzpicture}[remember picture,overlay]
-    \centering
-    \ifnum#1=0
-        #2
-    \fi
+\begin{tikzpicture}[remember picture,overlay]
+\centering
+\ifnum#1=0
+#2
+\fi
 
-    \ifnum#1=1
-        \draw[blue!70!black,line width=4pt]
-        ([xshift=-1.5cm,yshift=-2cm]current page.north east) coordinate (A)--
-        ([xshift=3.5cm,yshift=-2cm]current page.north west) coordinate(B)--
-        ([xshift=3.5cm,yshift=2cm]current page.south west) coordinate (C)--
-        ([xshift=-1.5cm,yshift=2cm]current page.south east) coordinate(D)--cycle;
-        \draw
-        ([xshift=-0.5cm,yshift=0.5cm]A)--
-        ([xshift=0.5cm,yshift=0.5cm]B)--
-        ([xshift=0.5cm,yshift=-0.5cm]B)--
-        ([xshift=-0.5cm,yshift=-0.5cm]B)--
-        ([xshift=-0.5cm,yshift=0.5cm]C)--
-        ([xshift=0.5cm,yshift=0.5cm]C)--
-        ([xshift=0.5cm,yshift=-0.5cm]C)--
-        ([xshift=-0.5cm,yshift=-0.5cm]D)--
-        ([xshift=-0.5cm,yshift=0.5cm]D)--
-        ([xshift=0.5cm,yshift=0.5cm]D)--
-        ([xshift=0.5cm,yshift=-0.5cm]A)--
-        ([xshift=-0.5cm,yshift=-0.5cm]A)--
-        ([xshift=-0.5cm,yshift=0.5cm]A);
-        \draw
-        ([xshift=0.3cm,yshift=-0.3cm]A)--
-        ([xshift=-0.3cm,yshift=-0.3cm]B)--
-        ([xshift=-0.3cm,yshift=0.3cm]B)--
-        ([xshift=0.3cm,yshift=0.3cm]B)--
-        ([xshift=0.3cm,yshift=-0.3cm]C)--
-        ([xshift=-0.3cm,yshift=-0.3cm]C)--
-        ([xshift=-0.3cm,yshift=0.3cm]C)--
-        ([xshift=0.3cm,yshift=0.3cm]D)--
-        ([xshift=0.3cm,yshift=-0.3cm]D)--
-        ([xshift=-0.3cm,yshift=-0.3cm]D)--
-        ([xshift=-0.3cm,yshift=0.3cm]A)--
-        ([xshift=0.3cm,yshift=0.3cm]A)--
-        ([xshift=0.3cm,yshift=-0.3cm]A);
-    \fi
+\ifnum#1=1
+\draw[blue!70!black,line width=4pt]
+([xshift=-1.5cm,yshift=-2cm]current page.north east) coordinate (A)--
+([xshift=3.5cm,yshift=-2cm]current page.north west) coordinate(B)--
+([xshift=3.5cm,yshift=2cm]current page.south west) coordinate (C)--
+([xshift=-1.5cm,yshift=2cm]current page.south east) coordinate(D)--cycle;
+\draw
+([xshift=-0.5cm,yshift=0.5cm]A)--
+([xshift=0.5cm,yshift=0.5cm]B)--
+([xshift=0.5cm,yshift=-0.5cm]B)--
+([xshift=-0.5cm,yshift=-0.5cm]B)--
+([xshift=-0.5cm,yshift=0.5cm]C)--
+([xshift=0.5cm,yshift=0.5cm]C)--
+([xshift=0.5cm,yshift=-0.5cm]C)--
+([xshift=-0.5cm,yshift=-0.5cm]D)--
+([xshift=-0.5cm,yshift=0.5cm]D)--
+([xshift=0.5cm,yshift=0.5cm]D)--
+([xshift=0.5cm,yshift=-0.5cm]A)--
+([xshift=-0.5cm,yshift=-0.5cm]A)--
+([xshift=-0.5cm,yshift=0.5cm]A);
+\draw
+([xshift=0.3cm,yshift=-0.3cm]A)--
+([xshift=-0.3cm,yshift=-0.3cm]B)--
+([xshift=-0.3cm,yshift=0.3cm]B)--
+([xshift=0.3cm,yshift=0.3cm]B)--
+([xshift=0.3cm,yshift=-0.3cm]C)--
+([xshift=-0.3cm,yshift=-0.3cm]C)--
+([xshift=-0.3cm,yshift=0.3cm]C)--
+([xshift=0.3cm,yshift=0.3cm]D)--
+([xshift=0.3cm,yshift=-0.3cm]D)--
+([xshift=-0.3cm,yshift=-0.3cm]D)--
+([xshift=-0.3cm,yshift=0.3cm]A)--
+([xshift=0.3cm,yshift=0.3cm]A)--
+([xshift=0.3cm,yshift=-0.3cm]A);
+\fi
 
-    \ifnum#1=2
-        \draw [line width=2pt]
-        ([xshift=3.5cm,yshift=-2.5cm]current page.north west)
-        rectangle
-        ([xshift=-2cm,yshift=2.5cm]current page.south east);
-        \draw [line width=0.5pt]
-        ([xshift=3.6cm,yshift=-2.6cm]current page.north west)
-        rectangle
-        ([xshift=-2.1cm,yshift=2.6cm]current page.south east);
-    \fi
+\ifnum#1=2
+\draw [line width=2pt]
+([xshift=3.5cm,yshift=-2.5cm]current page.north west)
+rectangle
+([xshift=-2cm,yshift=2.5cm]current page.south east);
+\draw [line width=0.5pt]
+([xshift=3.6cm,yshift=-2.6cm]current page.north west)
+rectangle
+([xshift=-2.1cm,yshift=2.6cm]current page.south east);
+\fi
 
-    \ifnum#1=3
-        \draw[line width = 3pt]
-        ([xshift=3.5cm,yshift=-2.5cm]current page.north west)
-        rectangle
-        ([xshift=-2cm,yshift=2.5cm]current page.south east);
-    \fi
-    \end{tikzpicture}
+\ifnum#1=3
+\draw[line width = 3pt]
+([xshift=3.5cm,yshift=-2.5cm]current page.north west)
+rectangle
+([xshift=-2cm,yshift=2.5cm]current page.south east);
+\fi
+\end{tikzpicture}
 }
 
 \newcommand{\frontmatterthesisinfo}[2]{
-    \ifnum#1=0
-        #2
-    \fi
-    \ifnum#1=1
-        \begin{centerboxed}
-            \centering
-            \vspace*{3mm}
-            \fontsize{14}{16}\selectfont Đại học Quốc gia Hà Nội \\
-            \fontsize{14}{16}\selectfont Trường Đại học Khoa học Tự
-nhiên \\
-            \fontsize{13}{16}\selectfont\textbf{Khoa Toán - Cơ - Tin
-học} \\
-            \fontsize{8}{16}\Pisymbol{dingbat}{69} \hspace{1.4cm}  \Huge\usym{1F56E} \hspace{1cm} \fontsize{8}{16}\Pisymbol{dingbat}{70}\\
-            \vspace*{1.5cm}
-            \includegraphics[height=3cm,keepaspectratio]{"image/HUS
-Logo.jpg"}\\
-            \vspace*{1.5cm}
-            \fontsize{18}{1}\selectfont \textbf{Tool tạo pdf báo cáo từ
-markdown} \\
-            \vspace{2cm}
-            {\fontsize{14}{16}\selectfont Báo cáo cuối môn học}  \\
-            {\fontsize{14}{16}\selectfont Thực tập thực tế phát triển
-phần mềm}  \\
-            {\fontsize{14}{16}\selectfont Ngành: Toán tin}  \\
-            \vspace{2cm}
-            \fontsize{14}{1}\selectfont\textbf{Người hướng dẫn: Phan
-Thanh Ngọc} \\
-            \vspace{2cm}
-            \raggedright{\hspace{4.2cm}\fontsize{14}{1}\selectfont \textbf{Người thực hiện:}\\}
-            \vspace{0.5cm}\hspace{5.5cm}
-            \begin{tabular}{ll}
-            Phan Thanh Ngọc & 20000001 \\ \\[0.25em] Phan Thanh
+\ifnum#1=0
+#2
+\fi
+\ifnum#1=1
+\begin{centerboxed}
+\centering
+\vspace*{3mm}
+\fontsize{14}{16}\selectfont Đại học Quốc gia Hà Nội \\
+\fontsize{14}{16}\selectfont Trường Đại học Khoa học Tự nhiên \\
+\fontsize{13}{16}\selectfont\textbf{Khoa Toán - Cơ - Tin học} \\
+\fontsize{8}{16}\Pisymbol{dingbat}{69} \hspace{1.4cm}  \Huge\usym{1F56E} \hspace{1cm} \fontsize{8}{16}\Pisymbol{dingbat}{70}\\
+\vspace*{1.5cm}
+\includegraphics[height=3cm,keepaspectratio]{"image/logo.jpg"}\\
+\vspace*{1.5cm}
+\fontsize{18}{1}\selectfont \textbf{Tool tạo pdf báo cáo từ markdown} \\
+\vspace{2cm}
+{\fontsize{14}{16}\selectfont Báo cáo cuối môn học}  \\
+{\fontsize{14}{16}\selectfont Thực tập thực tế phát triển phần mềm}  \\
+{\fontsize{14}{16}\selectfont Ngành: Toán tin}  \\
+\vspace{2cm}
+\fontsize{14}{1}\selectfont\textbf{Người hướng dẫn: Phan Thanh Ngọc} \\
+\vspace{2cm}
+\raggedright{\hspace{4.2cm}\fontsize{14}{1}\selectfont \textbf{Người thực hiện:}\\}
+\vspace{0.5cm}\hspace{5.5cm}
+\begin{tabular}{ll}
+Phan Thanh Ngọc & 20000001 \\ \\[0.25em] Phan Thanh
 Ngọc & 20000001 \\ \\[0.25em] 
-            \end{tabular}
-            \vfill
-            \centering
-            \fontsize{14}{14}\selectfont{\textbf{Hà Nội - 2023}}
-        \end{centerboxed}
-    \fi
+\end{tabular}
+\vfill
+\centering
+\fontsize{14}{14}\selectfont{\textbf{Hà Nội - 2023}}
+\end{centerboxed}
+\fi
 }
-
+% fix toc use san serif font in header
+\setkomafont{chapter}{\normalfont\bfseries\large}
+\RedeclareSectionCommands[
+tocentryformat=\usekomafont{chapter},
+tocpagenumberformat=\usekomafont{chapter}
+]{chapter}
 \begin{document}
 \frontmatter
 \pagestyle{empty}
 \begin{titlepage}
-    \frontmatterthesisframe{1}{}
-    \frontmatterthesisinfo{1}{}
+\frontmatterthesisframe{1}{}
+\frontmatterthesisinfo{1}{}
 \end{titlepage}
 
 \begin{titlepage}
-    \frontmatterthesisframe{1}{}
-    \frontmatterthesisinfo{1}{}
+\frontmatterthesisframe{1}{}
+\frontmatterthesisinfo{1}{}
 \end{titlepage}
 
 \mainmatter
@@ -456,35 +508,41 @@ Right & Left & Default & Center \\
 
 \begin{figure}
 \centering
-\includegraphics{image/HUS logo.jpg}
+\includegraphics{image/logo.jpg}
 \caption{Ảnh}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{a5a43052df7ffdec67db1c75c3cc4810b2b97d83.pdf}
+\includegraphics{6dc22bc3cdbbea0ddd945d2845890bc9c9316080.pdf}
 \caption{A simple flowchart.}
 \end{figure}
 
 \subsection{Code}\label{code}
 
-Inline: \passthrough{\lstinline[language=Python]!print("hello")!}
+Inline:
+\VERB|\BuiltInTok{print}\NormalTok{(}\StringTok{"hello"}\NormalTok{)}|
 
 code block:
 
-\begin{lstlisting}[language=Python, caption={hello world}]
-print("hello")
-\end{lstlisting}
+\begin{coding}
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{print}\NormalTok{(}\StringTok{"hello"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\caption{hello world}
+\end{coding}
 
 Thêm từ file
 
-\begin{lstlisting}
+\begin{verbatim}
 @book{texbook,
     author = {Cicero},
     year = {45BC},
     title = {De Finibus Bonorum et Malorum},
 }
-\end{lstlisting}
+\end{verbatim}
 
 \subsection{Biểu thức toán
 học}\label{biux1ec3u-thux1ee9c-touxe1n-hux1ecdc}

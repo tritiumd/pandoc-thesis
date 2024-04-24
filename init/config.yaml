@@ -1,23 +1,4 @@
 ---
-#Tùy chỉnh thông tin
-university: Đại học Quốc gia Hà Nội # Tên đại học
-collage: Trường Đại học Khoa học Tự nhiên # Tên trường
-faculty: Khoa Toán - Cơ - Tin học # Tên khoa
-subject: Thực tập thực tế phát triển phần mềm # Tên môn học
-major: Toán tin # Ngành học
-title: Tool tạo pdf báo cáo từ markdown # Tên đề tài
-subtitle: Báo cáo cuối môn học # Tên phụ
-instructor: Phan Thanh Ngọc # Tên giáo viên hướng dẫn
-author:
-  - name: Phan Thanh Ngọc # Tên tác giả
-    id: 20000001 # Mã số sinh viên
-  - name: Phan Thanh Ngọc # Tên tác giả
-    id: 20000001 # Mã số sinh viên
-position: Hà Nội
-day: 05 # Ngày
-month: 11 # Tháng
-year: 2023 # Năm
-logo: "image/HUS Logo.jpg"
 # Tùy chỉnh định dạng
 # Mục nào đánh dấu thử nghiệm xóa hay sửa có thể gây lỗi
 documentclass: scrbook
@@ -27,13 +8,21 @@ top-margin: 2.5cm # Lề trên
 bottom-margin: 2.5cm # Lề dưới
 left-margin: 3cm # Lề trái
 right-margin: 2.5cm # Lề phải
-font: Times New Roman # Kiểu phông chữ
+mainfont: Times New Roman # Kiểu phông chữ
+monofont: JetBrainsMono
+monofontoptions:
+  - Path = /usr/share/fonts/jetbrains-mono/
+  - Extension = .ttf
+  - UprightFont    = *-Regular
+  - ItalicFont     = *-Italic
+  - BoldFont       = *-Bold
+  - BoldItalicFont = *-BoldItalic
 line-spacing: 1 # Khoảng cách giữa các dòng
 indent: 14pt # Khoảng cách thụt đầu dòng
 parskip: 6pt # Khoảng cách giữa các đoạn
 tikzlib: calc # Thư viện tikz
 pagestyle: '`
-\fancyhead[L]{\includegraphics[height=1cm,keepaspectratio]{image/Khoa Toán - Cơ - Tin học.png}}
+\fancyhead[L]{\includegraphics[height=1cm,keepaspectratio]{image/page-header-logo.png}}
 \fancyhead[R]{\small\leftmark}
 \fancyfoot[C]{\thepage}
 `{=latex}' # Thử nghiệm: tự viết đầu trang chân trang
@@ -78,7 +67,8 @@ pandoc-latex-environment: # Thử nghiệm: Gắn môi trường latex với cla
   flushright: [right]
   centerboxed: [centerboxed]
   sign: [sign]
-customheader: '` `{=latex}'
+header-includes:
+  - '` `{=latex}'
 # Thử nghiệm: Tham chiếu bằng file bib
 bibliography:
   main: refs.bib
