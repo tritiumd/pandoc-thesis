@@ -21,20 +21,11 @@ vọng của mình.
 - Mình không chuyên về Latex, Word cũng chỉ ở mức đủ dùng vậy nên mình tin nó sẽ có ích cho bạn.
 
 # Cài đặt
-- Bước 1: Cài đặt Pandoc và Latex
-  - Đối với Windows bạn nên sử dụng Chocolatey để cài đặt Pandoc và Texlive
-  - Đối với Linux và MacOS bạn nên sử dụng Homebrew để cài đặt Pandoc và Texlive
-  - Còn nếu các bạn quá lười mày mò, hãy sử dụng Docker để tải image của mình đã được cài sẵn và tích hợp đầy đủ các plugin,
-  các gói latex cần thiết. Chỉ cần `docker pull ngocptblaplafla/pandoc-texlive-full` là xong. Mình cũng dùng nên dễ hỗ trợ
-  hơn (**_Recommended_**).
-
-- Bước 2: Tải template (file vnthesis.tex) và cho pandoc theo đường dẫn sau:
-  - Linux, macOS: ~/.local/share/pandoc/templates/ hoặc ~/.pandoc/templates/
-  - Windows 7+: C:\Users\USERNAME\AppData\Roaming\pandoc\templates\
-  - Nếu quá lười hãy dùng lệnh docker ở trên, đã bao gồm template này
+- Bước 1: Cài đặt Docker
+- Bước 2: Dùng Docker để kéo image: ngocptblaplafla/pandoc-texlive-full:latest
 
 # Sử dụng
-- Bước 1: Copy thư mục init và mở project tại folder này
+- Bước 1: Tải thư mục init và mở project tại folder này
 - Bước 2: Chỉnh sửa file config.yaml  
 - Bước 3: Viết vào file main.md  
 - Bước 4: Chạy lệnh trong file compile.sh, có thể tắt các filter không dùng (tốt nhất là để nguyên). Có thể mở terminal ở 
