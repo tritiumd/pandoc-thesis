@@ -7,7 +7,7 @@ subject: Thực tập thực tế phát triển phần mềm # Tên môn học
 major: Toán tin # Ngành học
 title: Tool tạo pdf báo cáo từ markdown # Tên đề tài
 subtitle: Báo cáo cuối môn học # Tên phụ
-instructor: Phan Thanh Ngọc # Tên giáo viên hướng dẫn
+instructors: Phan Thanh Ngọc # Tên giáo viên hướng dẫn
 author:
   - name: Phan Thanh Ngọc # Tên tác giả
     id: 20000001 # Mã số sinh viên

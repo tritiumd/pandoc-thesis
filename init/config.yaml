@@ -31,15 +31,19 @@ number-sections:
   section: '`\thechapter.\arabic{section}`{=latex}'
   subsection: '`\thesection.\arabic{subsection}`{=latex}'
   subsubsection: '`\thesubsection.\arabic{subsubsection}`{=latex}'
+  paragraph: '`\arabic{paragraph}`{=latex}'
+  subparagraph: '`\alph{subparagraph}`{=latex}'
 # arabic là số tự nhiên có thể thay bằng roman là số la mã nhỏ,
 # Roman là số la mã hoa, alph là chữ cái thường, Alph là chữ cái hoa
 # có thể rút gọn thành number-sections: true nếu dùng như trên
-# muốn bỏ đánh số thì xóa 5 dòng kia
+# muốn bỏ đánh số thì xóa 7 dòng kia
 title-format:
-  chapter: '`\bfseries\fontsize{16}{20}\selectfont`{=latex}'
-  section: '`\bfseries\fontsize{16}{20}\selectfont`{=latex}'
+  chapter: '`\bfseries\fontsize{20}{20}\selectfont`{=latex}'
+  section: '`\bfseries\fontsize{18}{20}\selectfont`{=latex}'
   subsection: '`\bfseries\fontsize{16}{18}\selectfont`{=latex}'
-  subsubsection: '`\bfseries\fontsize{16}{16}\selectfont`{=latex}'
+  subsubsection: '`\bfseries\fontsize{16}{16}\selectfont`'
+  paragraph: '`\hspace{1em}\fontsize{14}{16}\selectfont\rmfamily`{=latex}'
+  subparagraph: '`\hspace{2em}\fontsize{14}{16}\selectfont\rmfamily`{=latex}'
 # Thử nghiệm: tự viết định dạng tiêu đề
 toc:
   tocdepth: 2 # Độ sâu của mục lục default 2 do tính từ 0
