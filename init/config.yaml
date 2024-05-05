@@ -73,8 +73,6 @@ pandoc-latex-environment: # Thử nghiệm: Gắn môi trường latex với cla
   sign: [sign]
 header-includes:
   - '` `{=latex}'
-# Thử nghiệm: Tham chiếu bằng file bib
-bibliography:
-  main: refs.bib
 link-citations: true
+link-bibliography: true
 ---

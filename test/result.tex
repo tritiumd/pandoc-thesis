@@ -139,7 +139,7 @@
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
-\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\tightlist}{\setlength{\itemsep}{\smallskipamount}\setlength{\parskip}{\smallskipamount}}
 % definitions for citeproc citations
 \NewDocumentCommand\citeproctext{}{}
 \NewDocumentCommand\citeproc{mm}{%
@@ -157,9 +157,9 @@
 \setlength{\csllabelwidth}{3em}
 \newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
 {\begin{list}{}{%
-\setlength{\itemindent}{0pt}
+\setlength{\itemindent}{\smallskipamount}
 \setlength{\leftmargin}{0pt}
-\setlength{\parsep}{0pt}
+\setlength{\parsep}{\smallskipamount}
 % turn on hanging indent if param 1 is 1
 \ifodd #1
 \setlength{\leftmargin}{\cslhangindent}
@@ -195,12 +195,14 @@
 \renewcommand{\thesection}{\thechapter.\arabic{section}}
 \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
 \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\renewcommand{\paragraph}{\arabic{paragraph}}
+\renewcommand{\subparagraph}{\alph{subparagraph}}
 \titleformat{\chapter}
-{\bfseries\fontsize{16}{20}\selectfont}
-{\thechapter}{1em}{}
+{\bfseries\fontsize{20}{20}\selectfont}
+{\thechapter.}{1em}{}
 
 \titleformat{\section}
-{\bfseries\fontsize{16}{20}\selectfont}
+{\bfseries\fontsize{18}{20}\selectfont}
 {\thesection}{1em}{}
 
 \titleformat{\subsection}
@@ -208,8 +210,16 @@
 {\thesubsection}{1em}{}
 
 \titleformat{\subsubsection}
-{\bfseries\fontsize{16}{16}\selectfont}
+{\texttt{\textbackslash{}bfseries\textbackslash{}fontsize\{16\}\{16\}\textbackslash{}selectfont}}
 {\thesubsubsection}{1em}{}
+
+\titleformat{\paragraph}
+{\hspace{1em}\fontsize{14}{16}\selectfont\rmfamily}
+{\paragraph}{1em}{}
+
+\titleformat{\subparagraph}
+{\hspace{2em}\fontsize{14}{16}\selectfont\rmfamily}
+{\subparagraph}{1em}{}
 
 \usepackage{footnotebackref}
 
@@ -256,8 +266,8 @@
 
 \usepackage{environ}
 \NewEnviron{centerboxed}{
-\noindent\makebox[\linewidth][c]{%
-\begin{minipage}[t][0.95\textheight][t]{\linewidth}%
+\makebox[\linewidth][c]{%
+\begin{minipage}[t][0.9\textheight][t]{\linewidth}%
 \BODY
 \end{minipage}%
 }%
@@ -347,6 +357,7 @@ rectangle
 \ifnum#1=0
 #2
 \fi
+
 \ifnum#1=1
 \begin{centerboxed}
 \centering
@@ -360,23 +371,94 @@ rectangle
 \vspace*{1.5cm}
 \fontsize{18}{1}\selectfont \textbf{Tool tạo pdf báo cáo từ markdown} \\
 \vspace{2cm}
-{\fontsize{14}{16}\selectfont Báo cáo cuối môn học}  \\
-{\fontsize{14}{16}\selectfont Thực tập thực tế phát triển phần mềm}  \\
-{\fontsize{14}{16}\selectfont Ngành: Toán tin}  \\
+{\fontsize{14}{1}\selectfont Báo cáo cuối môn học}  \\
+{\fontsize{14}{1}\selectfont Thực tập thực tế phát triển phần mềm}  \\
+{\fontsize{14}{1}\selectfont Ngành: Toán tin}  \\
 \vspace{2cm}
-\fontsize{14}{1}\selectfont\textbf{Người hướng dẫn: Phan Thanh Ngọc} \\
+{\fontsize{14}{1}\selectfont\textbf{
+\begin{tabular}{ll}
+Người hướng dẫn:  & Phan Thanh Ngọc
+\end{tabular}
+}}
+\\
 \vspace{2cm}
-\raggedright{\hspace{4.2cm}\fontsize{14}{1}\selectfont \textbf{Người thực hiện:}\\}
+\raggedright{\hspace{4.2cm}\fontsize{14}{1}\selectfont \textbf{Người thực hiện:}\\
 \vspace{0.5cm}\hspace{5.5cm}
 \begin{tabular}{ll}
 Phan Thanh Ngọc & 20000001 \\ \\[0.25em] Phan Thanh
 Ngọc & 20000001 \\ \\[0.25em] 
 \end{tabular}
+}
 \vfill
 \centering
 \fontsize{14}{14}\selectfont{\textbf{Hà Nội - 2023}}
 \end{centerboxed}
 \fi
+
+\ifnum#1=2
+\begin{centerboxed}
+\centering
+\vspace*{3mm}
+{\fontsize{13}{1}\selectfont Đại học Quốc gia Hà Nội \\
+Trường Đại học Khoa học Tự nhiên \\
+\textbf{Khoa Toán - Cơ - Tin học}
+}\\
+\vspace{3.5cm}
+{\fontsize{14}{1}\selectfont \textbf{
+\begin{tabular}{ll}
+Phan Thanh Ngọc \\ \\[0.25em] Phan Thanh Ngọc \\ \\[0.25em] 
+\end{tabular}
+}}
+\\
+\vspace{2cm}
+
+{\fontsize{18}{1}\selectfont \textbf{Tool tạo pdf báo cáo từ markdown} }
+\\\vspace{5cm}
+
+{\fontsize{14}{1}\selectfont Báo cáo cuối môn học}  \\
+{\fontsize{14}{1}\selectfont Ngành: Toán tin}  \\
+
+\vfill
+\centering
+\fontsize{14}{14}\selectfont{\textbf{Hà Nội - 2023}}
+\end{centerboxed}
+\fi
+
+\ifnum#1=3
+\begin{centerboxed}
+\centering
+\vspace*{3mm}
+{\fontsize{13}{1}\selectfont Đại học Quốc gia Hà Nội \\
+Trường Đại học Khoa học Tự nhiên \\
+\textbf{Khoa Toán - Cơ - Tin học}
+}\\
+\vspace{3.5cm}
+{\fontsize{14}{1}\selectfont \textbf{
+\begin{tabular}{ll}
+Phan Thanh Ngọc \\ \\[0.25em] Phan Thanh Ngọc \\ \\[0.25em] 
+\end{tabular}
+}}
+\\
+\vspace{2cm}
+
+{\fontsize{18}{1}\selectfont \textbf{Tool tạo pdf báo cáo từ markdown} }
+\\\vspace{5cm}
+
+{\fontsize{14}{1}\selectfont Báo cáo cuối môn học}  \\
+{\fontsize{14}{1}\selectfont Ngành: Toán tin}  \\
+
+\vspace{2cm}
+{\fontsize{14}{1}\selectfont \textbf{
+\begin{tabular}{ll}
+Cán bộ hướng dẫn:  & Phan Thanh Ngọc
+\end{tabular}
+}}
+\vfill
+\centering
+\fontsize{14}{14}\selectfont{\textbf{Hà Nội - 2023}}
+\end{centerboxed}
+\fi
+
 }
 % fix toc use san serif font in header
 \setkomafont{chapter}{\normalfont\bfseries\large}
@@ -420,18 +502,19 @@ dụng}\label{vuxed-dux1ee5-cuxe1ch-sux1eed-dux1ee5ng}
 
 \section{Đoạn văn}\label{ux111oux1ea1n-vux103n}
 
-Đây là một đoạn văn ví dụ. Trích dẫn theo (\citeproc{ref-texbook}{Cicero
-45BC}): ``Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Maecenas sagittis eleifend molestie. In fringilla enim dolor. Praesent
-lacinia dui velit, at ullamcorper orci laoreet non. Nullam placerat
-efficitur leo a ornare. Duis condimentum, tortor vitae pellentesque
-venenatis, lorem urna gravida nibh, a fermentum est nunc at magna. Sed
-posuere arcu odio, posuere porta libero eleifend vel. Maecenas ut metus
-quam. Praesent vitae euismod nisl. Morbi tincidunt nulla eget lacus
-sagittis aliquet. Aliquam condimentum commodo lacus, quis convallis quam
-volutpat id. Proin lobortis, sapien et fermentum faucibus, lacus est
-tincidunt augue, quis facilisis elit nisi non nisl. Donec et odio sit
-amet ligula laoreet convallis non quis nulla.''
+Đây là một đoạn văn ví dụ. Trích dẫn theo
+(\citeproc{ref-texbook}{Cicero, 45BC}): ``Lorem ipsum dolor sit amet,
+consectetur adipiscing elit. Maecenas sagittis eleifend molestie. In
+fringilla enim dolor. Praesent lacinia dui velit, at ullamcorper orci
+laoreet non. Nullam placerat efficitur leo a ornare. Duis condimentum,
+tortor vitae pellentesque venenatis, lorem urna gravida nibh, a
+fermentum est nunc at magna. Sed posuere arcu odio, posuere porta libero
+eleifend vel. Maecenas ut metus quam. Praesent vitae euismod nisl. Morbi
+tincidunt nulla eget lacus sagittis aliquet. Aliquam condimentum commodo
+lacus, quis convallis quam volutpat id. Proin lobortis, sapien et
+fermentum faucibus, lacus est tincidunt augue, quis facilisis elit nisi
+non nisl. Donec et odio sit amet ligula laoreet convallis non quis
+nulla.''
 
 Đoạn văn thứ 2. Chân trang \footnote{Chân trang}
 
@@ -514,7 +597,7 @@ Right & Left & Default & Center \\
 
 \begin{figure}
 \centering
-\includegraphics{6dc22bc3cdbbea0ddd945d2845890bc9c9316080.pdf}
+\includegraphics{abd56eb503a03940d89d2094358f7dbd57571792.pdf}
 \caption{A simple flowchart.}
 \end{figure}
 
@@ -553,10 +636,10 @@ Block: \[a+b\]
 
 \chapter{Tài liệu tham khảo}\label{tuxe0i-liux1ec7u-tham-khux1ea3o}
 
-\phantomsection\label{refs-main}
+\phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
 \bibitem[\citeproctext]{ref-texbook}
-Cicero. 45BC. \emph{De Finibus Bonorum Et Malorum}.
+Cicero. (45BC). \emph{De finibus bonorum et malorum}.
 
 \end{CSLReferences}
 

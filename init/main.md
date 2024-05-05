@@ -94,7 +94,7 @@ $$a+b$$
 
 # Tài liệu tham khảo 
 
-::: {#refs-main}
+::: {#refs}
 :::
 
 # Phụ lục
