@@ -22,7 +22,6 @@ indent: 14pt # Khoảng cách thụt đầu dòng
 parskip: 6pt # Khoảng cách giữa các đoạn
 tikzlib: calc # Thư viện tikz
 pagestyle: '`
-\fancyhead[L]{\includegraphics[height=1cm,keepaspectratio]{image/page-header-logo.png}}
 \fancyhead[R]{\small\leftmark}
 \fancyfoot[C]{\thepage}
 `{=latex}' # Thử nghiệm: tự viết đầu trang chân trang
@@ -41,7 +40,7 @@ title-format:
   chapter: '`\bfseries\fontsize{20}{20}\selectfont`{=latex}'
   section: '`\bfseries\fontsize{18}{20}\selectfont`{=latex}'
   subsection: '`\bfseries\fontsize{16}{18}\selectfont`{=latex}'
-  subsubsection: '`\bfseries\fontsize{16}{16}\selectfont`'
+  subsubsection: '`\bfseries\fontsize{16}{16}\selectfont`{=latex}'
   paragraph: '`\hspace{1em}\fontsize{14}{16}\selectfont\rmfamily`{=latex}'
   subparagraph: '`\hspace{2em}\fontsize{14}{16}\selectfont\rmfamily`{=latex}'
 # Thử nghiệm: tự viết định dạng tiêu đề
