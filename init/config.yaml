@@ -49,27 +49,19 @@ toc:
   lof: true # Mục lục hình
   lot: true # Mục lục bảng
 # bìa
-horizontal_line: '`\fontsize{8}{16}\Pisymbol{dingbat}{69} \hspace{1.4cm}  \Huge\usym{1F56E} \hspace{1cm} \fontsize{8}{16}\Pisymbol{dingbat}{70}`{=latex}'
-frame_type: 1 # kiểu khung 0 là tự viết, còn có khung 1,2,3
-frame: '` `{=latex}'
-# Thử nghiệm: tự viết khung với framekind 0, không viết sẽ không có khung# Thử nghiệm: đường cắt phần tên và logo
-# bìa ngoài
-titlepage_cover: true
-content_type: 1 # kiểu khung 0 là tự viết, còn có kiểu khác
-titlepage_content: '` `{=latex}'
-# Thử nghiệm: để tùy chỉnh các mục như tên mã sinh viên bằng latex...
-# bìa trong
-second_titlepage_cover: true
-second_content_type: 1 # kiểu khung 0 là tự viết, còn có kiểu khác như 1
-second_titlepage_content: '` `{=latex}'
+cover:
+  - frame_type: 1
+    frame: '` `{=latex}'
+    horizontal_line: '`\fontsize{8}{16}\Pisymbol{dingbat}{69} \hspace{1.4cm}  \Huge\usym{1F56E} \hspace{1cm} \fontsize{8}{16}\Pisymbol{dingbat}{70}`{=latex}'
+    content_type: 1 # kiểu khung 0 là tự viết, còn có kiểu khác
+    content: '` `{=latex}'
+  - frame_type: 2
+    content_type: 2
+  - frame_type: 3
+    content_type: 3
 # khác
 tables-vrules: true # Thử nghiệm: Bảng có đường kẻ dọc
 tables-hrules: true # Thử nghiệm: Bảng có đường kẻ ngang
-pandoc-latex-environment: # Thử nghiệm: Gắn môi trường latex với class
-  center: [center]
-  flushright: [right]
-  centerboxed: [centerboxed]
-  sign: [sign]
 header-includes:
   - '` `{=latex}'
 link-citations: true
