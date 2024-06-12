@@ -78,7 +78,7 @@ local function frame(frame_type,frame_ext)
     return frame_template[frame_type] .. frame_ext .. '\n'
 end
 
-local function content(meta, content_type, content)
+local function content(meta, content_type, content_data)
     local content_template = {
         ['0'] = '',
         [''] = '',
@@ -189,14 +189,14 @@ local function content(meta, content_type, content)
               {template = pandoc.template.compile(content_template[content_type])}
             )
         .. '\n' ..
-        content
+            content_data
         .. '\n' ..
         '\\end{centerboxed}'
 end
 
 local function cover(meta, cover_info)
     cover=''
-    for i,d in ipairs(cover_info) do
+    for _,d in ipairs(cover_info) do
         cover = cover .. '\\begin{titlepage}\n'
         if d.frame == nil then d.frame = '' end
         cover = cover .. frame(stringify(d.frame_type),pandoc.write(pandoc.Pandoc(d.frame),'latex'))
@@ -226,7 +226,7 @@ function Meta(meta)
     firstauthor = meta.firstauthor
     if not FORMAT:match 'latex' then
        author = {}
-       for i,d in ipairs(meta.author) do
+       for _,d in ipairs(meta.author) do
            table.insert(author, stringify(d.name) .. ' - ' .. stringify(d.id))
        end
        meta.author=author

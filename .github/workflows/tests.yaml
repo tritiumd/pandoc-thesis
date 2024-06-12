@@ -1,0 +1,17 @@
+name: Test template
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: load template to init
+        run: |
+          cp pandoc/defaults/* init
+          cp pandoc/filters/* init
+          cp pandoc/templates/* init
+      - name: test preview
+        run: docker run --rm --user `id -u`:`id -g` -v ./init:/workspace ngocptblaplafla/pandoc-texlive-full:latest --verbose --defaults vnthesis-preview main.md
+      - name: test latex
+        run: docker run --rm --user `id -u`:`id -g` -v ./init:/workspace ngocptblaplafla/pandoc-texlive-full:latest --verbose --defaults vnthesis main.md
