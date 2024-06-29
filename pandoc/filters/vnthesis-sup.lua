@@ -126,7 +126,7 @@ local function content(meta, content_type, content_data)
            $if(collage)$$collage$ \\$endif$
            \textbf{$faculty$}
            }
-           \\
+           $if(horizontal_line)$$horizontal_line$\\$endif$
            \vspace{2.5cm}
            {\fontsize{14}{14}\selectfont \textbf{
            \begin{tabular}{ll}
@@ -154,7 +154,7 @@ local function content(meta, content_type, content_data)
             $if(collage)$ $collage$ \\$endif$
             \textbf{$faculty$}
             }
-            \\
+            $if(horizontal_line)$$horizontal_line$\\$endif$
             \vspace{2.5cm}
             {\fontsize{14}{14}\selectfont \textbf{
             \begin{tabular}{ll}
@@ -231,7 +231,7 @@ function Meta(meta)
        end
        meta.author=author
     end
-    if FORMAT:match 'latex' then
+    if meta.cover and FORMAT:match 'latex' then
         meta.cover_final=pandoc.RawBlock('latex', cover(meta, meta.cover))
     end
     return meta
