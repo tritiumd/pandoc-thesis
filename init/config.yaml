@@ -17,6 +17,7 @@ monofontoptions:
   - ItalicFont     = *-Italic
   - BoldFont       = *-Bold
   - BoldItalicFont = *-BoldItalic
+  - Scale = 0.8
 line-spacing: 1 # Khoảng cách giữa các dòng
 indent: 14pt # Khoảng cách thụt đầu dòng
 parskip: 6pt # Khoảng cách giữa các đoạn
@@ -66,4 +67,10 @@ header-includes:
   - '` `{=latex}'
 link-citations: true
 link-bibliography: true
+hypersetup:
+  - citecolor=magenta
+  - colorlinks=true
+  - linkcolor=black
+  - filecolor=bubblegum
+  - urlcolor=deepblue
 ---

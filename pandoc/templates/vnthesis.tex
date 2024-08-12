@@ -176,10 +176,9 @@ $endif$
 \usepackage[]{hyperref}
 \usepackage{bookmark}
 \hypersetup{
-    colorlinks=true,
-    linkcolor=black,
-    filecolor=bubblegum,
-    urlcolor=deepblue,
+    $for(hypersetup)$
+    $hypersetup$,
+    $endfor$
     pdftitle={$title$},
 }
 
