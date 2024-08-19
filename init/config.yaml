@@ -61,8 +61,8 @@ cover:
   - frame_type: 3
     content_type: 3
 # khác
-tables-vrules: true # Thử nghiệm: Bảng có đường kẻ dọc
-tables-hrules: true # Thử nghiệm: Bảng có đường kẻ ngang
+#tables-vrules: true # Thử nghiệm: Bảng có đường kẻ dọc
+#tables-hrules: true # Thử nghiệm: Bảng có đường kẻ ngang
 header-includes:
   - '` `{=latex}'
 link-citations: true
