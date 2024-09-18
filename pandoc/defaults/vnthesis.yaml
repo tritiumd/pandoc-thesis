@@ -17,7 +17,7 @@ filters:
   - verbatim-captioning.lua
 standalone: true
 verbosity: ERROR
-highlight-style: ${USERDATA}/themes/github-light.theme
+highlight-style: ${USERDATA}/highlight-styles/github-light.theme
 citeproc: true
 bibliography: refs.bib
 csl: ${USERDATA}/csl/apa-numeric-superscript-brackets.csl
