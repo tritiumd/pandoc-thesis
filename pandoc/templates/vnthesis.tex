@@ -189,6 +189,7 @@ $endif$
 \newsavebox\pandoc@box
 \newcommand*\pandocbounded[1]{% scales image to fit in text height/width
     \sbox\pandoc@box{#1}%
+    \vspace*{-0.75cm}
     \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
     \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
     \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
@@ -196,6 +197,8 @@ $endif$
     \else\usebox{\pandoc@box}%
     \fi%
 }
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{3pt}
 % Set default figure placement to htbp
 \def\fps@figure{htbp}
 \makeatother
@@ -351,6 +354,7 @@ $if(toc)$
 $if(toc.lof)$\listoffigures$endif$
 $if(toc.lot)$\listoftables$endif$
 }
+$if(toc.includes-list)$\KOMAoption{listof}{totoc}$endif$
 $endif$
 \usepackage{tikz}
 \newcommand{\centerboxedHeight}{0.95}

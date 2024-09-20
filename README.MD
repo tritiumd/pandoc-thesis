@@ -28,10 +28,14 @@ vọng của mình.
 - Bước 1: Tải thư mục init và mở project tại folder này
 - Bước 2: Chỉnh sửa file config.yaml  
 - Bước 3: Viết vào file main.md  
-- Bước 4: Chạy lệnh trong file compile.sh, có thể tắt các filter không dùng (tốt nhất là để nguyên). Có thể mở terminal ở 
-folder đó và copy lệnh trong file compile.sh rồi paste vào terminal đối với docker
-
-Có thể thay `.pdf` bằng `.docx` để xuất ra file word hoặc `.tex` để xuất ra file tex.
+- Bước 4: Chạy lệnh sau: 
+```bash
+docker run --rm -v .:/workspace ngocptblaplafla/pandoc-texlive-full:latest --defaults vnthesis main.md "$@"
+```
+Nếu bị lỗi quyền hãy dùng lệnh sau:
+```bash
+docker run --rm --user `id -u`:`id -g` -v.:/workspace ngocptblaplafla/pandoc-texlive-full:latest --defaults vnthesis main.md "$@"
+```
 
 Phiên bản `vnthesis.tex` ở đây là phiên bản mới nhất không ổn định có thể có lỗi, nên dùng bản có sẵn trong docker.
 Nếu muốn dùng, hãy để trong folder của project 

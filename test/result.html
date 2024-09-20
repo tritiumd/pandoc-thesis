@@ -257,8 +257,6 @@
       margin-left: 2em;
     }  </style>
   
-  
-  
 </head>
 <body>
 <header id="title-block-header">
@@ -270,17 +268,22 @@
 <nav id="TOC" role="doc-toc">
 <ul>
 <li><a href="#lời-mở-đầu" id="toc-lời-mở-đầu">Lời mở đầu</a></li>
-<li><a href="#ví-dụ-cách-sử-dụng" id="toc-ví-dụ-cách-sử-dụng">Ví dụ cách
-sử dụng</a>
+<li><a href="#sec:1" id="toc-sec:1">Ví dụ cách sử dụng</a>
 <ul>
 <li><a href="#đoạn-văn" id="toc-đoạn-văn">Đoạn văn</a></li>
-<li><a href="#bảng-biểu" id="toc-bảng-biểu">Bảng biểu</a></li>
-<li><a href="#hình-ảnh" id="toc-hình-ảnh">Hình ảnh</a>
+<li><a href="#danh-sách" id="toc-danh-sách">Danh sách</a>
 <ul>
+<li><a href="#không-có-thứ-tự" id="toc-không-có-thứ-tự">Không có thứ
+tự</a></li>
+<li><a href="#có-thứ-tự" id="toc-có-thứ-tự">Có thứ tự</a></li>
+<li><a href="#kết-hợp" id="toc-kết-hợp">Kết hợp</a></li>
+</ul></li>
+<li><a href="#bảng-biểu" id="toc-bảng-biểu">Bảng biểu</a></li>
+<li><a href="#hình-ảnh" id="toc-hình-ảnh">Hình ảnh</a></li>
 <li><a href="#code" id="toc-code">Code</a></li>
 <li><a href="#biểu-thức-toán-học" id="toc-biểu-thức-toán-học">Biểu thức
 toán học</a></li>
-</ul></li>
+<li><a href="#liên-kết" id="toc-liên-kết">Liên kết</a></li>
 </ul></li>
 <li><a href="#tài-liệu-tham-khảo" id="toc-tài-liệu-tham-khảo">Tài liệu
 tham khảo</a></li>
@@ -288,7 +291,6 @@ tham khảo</a></li>
 </ul>
 </nav>
 <h1 class="unnumbered" id="lời-mở-đầu">Lời mở đầu</h1>
-Lời mở đầuLời mở đầu
 <p>Tui xin tự cảm ơn tui vì lười gõ latex mà lại chăm ngồi code latex để
 đẻ ra con này</p>
 <div style="height: fit-content"><div style="float: right;text-align:center"> 
@@ -299,11 +301,11 @@ Lời mở đầuLời mở đầu
 Phan Thanh Ngọc<br>
 </div></div></br>
 <p> <!--cho mục lục--></p>
-<h1 id="ví-dụ-cách-sử-dụng">Ví dụ cách sử dụng</h1>
+<p><!--cho mục lục thuật toán thêm từ pandoc-crossref--></p>
+<h1 id="sec:1">Ví dụ cách sử dụng</h1>
 <h2 id="đoạn-văn">Đoạn văn</h2>
 <p>Đây là một đoạn văn ví dụ. Trích dẫn theo<span class="citation"
-data-cites="texbook"><sup>[<a href="#ref-texbook"
-role="doc-biblioref">1</a>]</sup></span>: “Lorem ipsum dolor sit amet,
+data-cites="texbook">[@texbook]</span>: “Lorem ipsum dolor sit amet,
 consectetur adipiscing elit. Maecenas sagittis eleifend molestie. In
 fringilla enim dolor. Praesent lacinia dui velit, at ullamcorper orci
 laoreet non. Nullam placerat efficitur leo a ornare. Duis condimentum,
@@ -317,9 +319,48 @@ non nisl. Donec et odio sit amet ligula laoreet convallis non quis
 nulla.”</p>
 <p>Đoạn văn thứ 2. Chân trang <a href="#fn1" class="footnote-ref"
 id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<h2 id="danh-sách">Danh sách</h2>
+<h3 id="không-có-thứ-tự">Không có thứ tự</h3>
+<ul>
+<li>1</li>
+<li>2</li>
+<li>3</li>
+</ul>
+<h3 id="có-thứ-tự">Có thứ tự</h3>
+<ol type="1">
+<li>A</li>
+<li>B</li>
+<li>C</li>
+</ol>
+<p>Chỉ cần gõ số bắt đầu và sau đó dùng # để tự cập nhật số</p>
+<ol start="4" type="a">
+<li>D</li>
+<li>E</li>
+<li>F</li>
+</ol>
+<h3 id="kết-hợp">Kết hợp</h3>
+<ol type="1">
+<li>a</li>
+</ol>
+<ul>
+<li>b</li>
+<li>c
+<ul>
+<li>d</li>
+<li>e
+<ul>
+<li>f</li>
+<li>g</li>
+</ul></li>
+</ul></li>
+</ul>
+<ol start="2" type="1">
+<li>h</li>
+</ol>
 <h2 id="bảng-biểu">Bảng biểu</h2>
+<div id="tbl:1">
 <table style="width:64%;">
-<caption>Bảng phức tạp</caption>
+<caption>Bảng 1: Bảng phức tạp</caption>
 <colgroup>
 <col style="width: 30%" />
 <col style="width: 11%" />
@@ -327,24 +368,24 @@ id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <col style="width: 11%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th rowspan="2">Location</th>
 <th colspan="3">Temperature 1961-1990 in degree Celsius</th>
 </tr>
-<tr class="odd">
+<tr>
 <th>min</th>
 <th>mean</th>
 <th>max</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Antarctica</td>
 <td>-89.2</td>
 <td>N/A</td>
 <td>19.8</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Earth</td>
 <td>-89.2</td>
 <td>14</td>
@@ -352,10 +393,11 @@ id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </tr>
 </tbody>
 </table>
+</div>
 <table>
 <caption>Bảng đơn giản</caption>
 <thead>
-<tr class="header">
+<tr>
 <th style="text-align: right;">Right</th>
 <th style="text-align: left;">Left</th>
 <th>Default</th>
@@ -363,19 +405,19 @@ id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td style="text-align: right;">12</td>
 <td style="text-align: left;">12</td>
 <td>12</td>
 <td style="text-align: center;">12</td>
 </tr>
-<tr class="even">
+<tr>
 <td style="text-align: right;">123</td>
 <td style="text-align: left;">123</td>
 <td>123</td>
 <td style="text-align: center;">123</td>
 </tr>
-<tr class="odd">
+<tr>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;">1</td>
 <td>1</td>
@@ -384,28 +426,75 @@ id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </tbody>
 </table>
 <h2 id="hình-ảnh">Hình ảnh</h2>
-<figure>
-<img src="image/logo.jpg" title="fig:" alt="Ảnh" />
-<figcaption aria-hidden="true">Ảnh</figcaption>
+<figure id="fig:1">
+<img src="./image/logo.jpg" alt="Hình 1: Ảnh" />
+<figcaption aria-hidden="true">Hình 1: Ảnh</figcaption>
 </figure>
 <figure>
-<img src="060baaad89cd04bbb90653715b8777333db5df1e.svg" title="fig:"
+<img src="./2938c4f05a7d6378358de59bb112bae889715890.png"
 alt="A simple flowchart." />
 <figcaption aria-hidden="true"><p>A simple flowchart.</p></figcaption>
 </figure>
-<h3 id="code">Code</h3>
+<h2 id="code">Code</h2>
 <p>Inline: <code
 class="sourceCode python"><span class="bu">print</span>(<span class="st">&quot;hello&quot;</span>)</code></p>
 <p>code block:</p>
+<div id="lst:code" class="listing python">
+<p>Thuật toán 1: Mergesort</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> merge_sort(arr):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(arr) <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        mid <span class="op">=</span> <span class="bu">len</span>(arr) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        left_half <span class="op">=</span> arr[:mid]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        right_half <span class="op">=</span> arr[mid:]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        merge_sort(left_half)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        merge_sort(right_half)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> j <span class="op">=</span> k <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> i <span class="op">&lt;</span> <span class="bu">len</span>(left_half) <span class="kw">and</span> j <span class="op">&lt;</span> <span class="bu">len</span>(right_half):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> left_half[i] <span class="op">&lt;</span> right_half[j]:</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                arr[k] <span class="op">=</span> left_half[i]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                arr[k] <span class="op">=</span> right_half[j]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                j <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            k <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> i <span class="op">&lt;</span> <span class="bu">len</span>(left_half):</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>            arr[k] <span class="op">=</span> left_half[i]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            k <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> j <span class="op">&lt;</span> <span class="bu">len</span>(right_half):</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            arr[k] <span class="op">=</span> right_half[j]</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            j <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            k <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage:</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> [<span class="dv">38</span>, <span class="dv">27</span>, <span class="dv">43</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">82</span>, <span class="dv">10</span>]</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>sorted_arr <span class="op">=</span> merge_sort(arr)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Sorted array is:&quot;</span>, sorted_arr)</span></code></pre></div>
+</div>
 <p>Thêm từ file</p>
 <pre><code>@book{texbook,
     author = {Cicero},
     year = {45BC},
     title = {De Finibus Bonorum et Malorum},
 }</code></pre>
-<h3 id="biểu-thức-toán-học">Biểu thức toán học</h3>
+<h2 id="biểu-thức-toán-học">Biểu thức toán học</h2>
 <p>Inline: <span class="math inline"><em>a</em> + <em>b</em></span></p>
-<p>Block: <span class="math display"><em>a</em> + <em>b</em></span></p>
+<p>Block: <span id="eq:eq1"><span
+class="math display"><em>a</em> + <em>b</em>   (1)</span></span></p>
+<h2 id="liên-kết">Liên kết</h2>
+<p>Liên kết tới phần 1</p>
+<p>Liên kết tới bảng 1</p>
+<p>Liên kết tới hình 1</p>
+<p>Liên kết tới biểu thức 1</p>
+<p>Liên kết tới thuật toán 1</p>
 <h1 id="tài-liệu-tham-khảo">Tài liệu tham khảo</h1>
 <div id="refs" class="references csl-bib-body hanging-indent"
 data-entry-spacing="0" data-line-spacing="2" role="list">
@@ -413,7 +502,8 @@ data-entry-spacing="0" data-line-spacing="2" role="list">
 1. Cicero. (45BC). <em>De finibus bonorum et malorum</em>.
 </div>
 </div>
-<h1 id="phụ-lục">Phụ lục</h1>
+<h1 class="unnumbered" id="phụ-lục">Phụ lục</h1>
+<p>Phần này không có số trong mục lục</p>
 <section id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />

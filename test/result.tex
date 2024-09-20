@@ -28,6 +28,7 @@
         ItalicFont = *-Italic,
         BoldFont = *-Bold,
         BoldItalicFont = *-BoldItalic,
+        Scale = 0.8,
     ]
 
 \usepackage{fontawesome5}
@@ -116,30 +117,39 @@
 \usepackage[]{hyperref}
 \usepackage{bookmark}
 \hypersetup{
-    colorlinks=true,
-    linkcolor=black,
-    filecolor=bubblegum,
-    urlcolor=deepblue,
-    pdftitle={Tool tạo pdf báo cáo từ markdown},
+        citecolor=magenta,
+        colorlinks=true,
+        linkcolor=black,
+        filecolor=bubblegum,
+        urlcolor=deepblue,
+        pdftitle={Tool tạo pdf báo cáo từ markdown},
 }
 
 % from pandoc
 \newcommand{\passthrough}[1]{#1}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+    \sbox\pandoc@box{#1}%
+    \vspace*{-0.75cm}
+    \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+    \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+    \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+    \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+    \else\usebox{\pandoc@box}%
+    \fi%
+}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{3pt}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{\setlength{\itemsep}{\smallskipamount}\setlength{\parskip}{\smallskipamount}}
+\usepackage{soul}
+\usepackage{xeCJKfntef}
+\renewcommand{\st}[1]{\sout{#1}}
 % definitions for citeproc citations
 \NewDocumentCommand\citeproctext{}{}
 \NewDocumentCommand\citeproc{mm}{%
@@ -240,29 +250,42 @@
 %end tables-vrules.lua
 
 
-%begin tables-vrules.lua
-\usepackage{longtable,booktabs,array}
-\usepackage{calc} % for calculating minipage widths
-% Correct order of tables after \paragraph or \subparagraph
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
-\makeatother
-% Allow footnotes in longtable head/foot
-\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-\makesavenoteenv{longtable}
-\setlength{\aboverulesep}{0pt}
-\setlength{\belowrulesep}{0pt}
-\renewcommand{\arraystretch}{1.3}
-%end tables-vrules.lua
 \usepackage{multicol}
   \newlength{\currentparskip}
-\usepackage{newfloat}
-\DeclareFloatingEnvironment[
-    fileext=los,
-    name=Verbatim,
-    placement=tbhp,
-]{coding}
+\makeatletter
+\@ifpackageloaded{subfig}{}{\usepackage{subfig}}
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\captionsetup[subfloat]{margin=0.5em}
+\AtBeginDocument{%
+\renewcommand*\figurename{Hình}
+\renewcommand*\tablename{Bảng}
+}
+\AtBeginDocument{%
+\renewcommand*\listfigurename{Danh sách hình}
+\renewcommand*\listtablename{Danh sách bảng}
+}
+\newcounter{pandoccrossref@subfigures@footnote@counter}
+\newenvironment{pandoccrossrefsubfigures}{%
+\setcounter{pandoccrossref@subfigures@footnote@counter}{0}
+\begin{figure}\centering%
+\gdef\global@pandoccrossref@subfigures@footnotes{}%
+\DeclareRobustCommand{\footnote}[1]{\footnotemark%
+\stepcounter{pandoccrossref@subfigures@footnote@counter}%
+\ifx\global@pandoccrossref@subfigures@footnotes\empty%
+\gdef\global@pandoccrossref@subfigures@footnotes{{##1}}%
+\else%
+\g@addto@macro\global@pandoccrossref@subfigures@footnotes{, {##1}}%
+\fi}}%
+{\end{figure}%
+\addtocounter{footnote}{-\value{pandoccrossref@subfigures@footnote@counter}}
+\@for\f:=\global@pandoccrossref@subfigures@footnotes\do{\stepcounter{footnote}\footnotetext{\f}}%
+\gdef\global@pandoccrossref@subfigures@footnotes{}}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Thuật toán}
+\newcommand*\listoflistings{\listof{codelisting}{Danh sách thuật toán}}
+\makeatother
 \usepackage{environ}
 \NewEnviron{centerboxed}[1][0.95]{
 \makebox[\linewidth][c]{
@@ -288,6 +311,7 @@
 \listoffigures
 \listoftables
 }
+\KOMAoption{listof}{totoc}
 \usepackage{tikz}
 \newcommand{\centerboxedHeight}{0.95}
 \usetikzlibrary{calc}
@@ -401,7 +425,7 @@ Ngọc & 20000001 \\
            Trường Đại học Khoa học Tự nhiên \\
            \textbf{Khoa Toán - Cơ - Tin học}
            }
-           \\
+           
            \vspace{2.5cm}
            {\fontsize{14}{14}\selectfont \textbf{
            \begin{tabular}{ll}
@@ -442,7 +466,7 @@ markdown} }
              Trường Đại học Khoa học Tự nhiên \\
             \textbf{Khoa Toán - Cơ - Tin học}
             }
-            \\
+            
             \vspace{2.5cm}
             {\fontsize{14}{14}\selectfont \textbf{
             \begin{tabular}{ll}
@@ -490,13 +514,13 @@ Sinh viên
 
 \toc
 
-\chapter{Ví dụ cách sử
-dụng}\label{vuxed-dux1ee5-cuxe1ch-sux1eed-dux1ee5ng}
+\listoflistings 
+
+\chapter{Ví dụ cách sử dụng}\label{sec:1}
 
 \section{Đoạn văn}\label{ux111oux1ea1n-vux103n}
 
-Đây là một đoạn văn ví dụ. Trích dẫn
-theo\textsuperscript{{[}\citeproc{ref-texbook}{1}{]}}: ``Lorem ipsum
+Đây là một đoạn văn ví dụ. Trích dẫn theo{[}@texbook{]}: ``Lorem ipsum
 dolor sit amet, consectetur adipiscing elit. Maecenas sagittis eleifend
 molestie. In fringilla enim dolor. Praesent lacinia dui velit, at
 ullamcorper orci laoreet non. Nullam placerat efficitur leo a ornare.
@@ -511,20 +535,101 @@ convallis non quis nulla.''
 
 Đoạn văn thứ 2. Chân trang \footnote{Chân trang}
 
+\section{Danh sách}\label{danh-suxe1ch}
+
+\subsection{Không có thứ tự}\label{khuxf4ng-cuxf3-thux1ee9-tux1ef1}
+
+\begin{itemize}
+\tightlist
+\item
+  1
+\item
+  2
+\item
+  3
+\end{itemize}
+
+\subsection{Có thứ tự}\label{cuxf3-thux1ee9-tux1ef1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A
+\item
+  B
+\item
+  C
+\end{enumerate}
+
+Chỉ cần gõ số bắt đầu và sau đó dùng \# để tự cập nhật số
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  D
+\item
+  E
+\item
+  F
+\end{enumerate}
+
+\subsection{Kết hợp}\label{kux1ebft-hux1ee3p}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  a
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  b
+\item
+  c
+
+  \begin{itemize}
+  \tightlist
+  \item
+    d
+  \item
+    e
+
+    \begin{itemize}
+    \tightlist
+    \item
+      f
+    \item
+      g
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  h
+\end{enumerate}
+
 \section{Bảng biểu}\label{bux1ea3ng-biux1ec3u}
 
-\begin{longtable}[]{|
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep - 5\arrayrulewidth) * \real{0.3056}}|
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep - 5\arrayrulewidth) * \real{0.1111}}|
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep - 5\arrayrulewidth) * \real{0.1111}}|
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep - 5\arrayrulewidth) * \real{0.1111}}|}
-\caption{Bảng phức tạp}\tabularnewline
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3056}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1111}}@{}}
+\caption{\label{tbl:1}Bảng phức tạp}\tabularnewline
 \toprule\noalign{}
-\multirow{2}{=}{\begin{minipage}[b]{\linewidth}\smallskip
-\raggedright
+\multirow{2}{=}{\begin{minipage}[b]{\linewidth}\raggedright
 Location
 \end{minipage}} &
-\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3333} + 4\tabcolsep -2\tabcolsep -2\arrayrulewidth}|}{%
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3333} + 4\tabcolsep}@{}}{%
 \begin{minipage}[b]{\linewidth}\raggedright
 Temperature 1961-1990 in degree Celsius
 \end{minipage}} \\
@@ -541,7 +646,7 @@ max
 \multirow{2}{=}{\begin{minipage}[b]{\linewidth}\raggedright
 Location
 \end{minipage}} &
-\multicolumn{3}{>{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3333} + 4\tabcolsep -2\tabcolsep -2\arrayrulewidth}|}{%
+\multicolumn{3}{>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3333} + 4\tabcolsep}@{}}{%
 \begin{minipage}[b]{\linewidth}\raggedright
 Temperature 1961-1990 in degree Celsius
 \end{minipage}} \\
@@ -557,11 +662,10 @@ max
 \bottomrule\noalign{}
 \endlastfoot
 Antarctica & -89.2 & N/A & 19.8 \\
-\midrule
 Earth & -89.2 & 14 & 56.7 \\
 \end{longtable}
 
-\begin{longtable}[]{|r|l|l|c|}
+\begin{longtable}[]{@{}rllc@{}}
 \caption{Bảng đơn giản}\tabularnewline
 \toprule\noalign{}
 Right & Left & Default & Center \\
@@ -574,9 +678,7 @@ Right & Left & Default & Center \\
 \bottomrule\noalign{}
 \endlastfoot
 12 & 12 & 12 & 12 \\
-\midrule
 123 & 123 & 123 & 123 \\
-\midrule
 1 & 1 & 1 & 1 \\
 \end{longtable}
 
@@ -584,31 +686,65 @@ Right & Left & Default & Center \\
 
 \begin{figure}
 \centering
-\includegraphics{image/logo.jpg}
-\caption{Ảnh}
+\pandocbounded{\includegraphics[keepaspectratio]{image/logo.jpg}}
+\caption{Ảnh}\label{fig:1}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{6648bd134d58ca85905680498e0c179c8a803b14.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{2938c4f05a7d6378358de59bb112bae889715890.png}}
 \caption{A simple flowchart.}
 \end{figure}
 
-\subsection{Code}\label{code}
+\section{Code}\label{code}
 
 Inline:
 \VERB|\BuiltInTok{print}\NormalTok{(}\StringTok{"hello"}\NormalTok{)}|
 
 code block:
 
-\begin{coding}
+\begin{codelisting}\caption{Mergesort}\label{lst:code}\end{codelisting}\vspace*{-0.75cm}
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\StringTok{"hello"}\NormalTok{)}
+\KeywordTok{def}\NormalTok{ merge\_sort(arr):}
+    \ControlFlowTok{if} \BuiltInTok{len}\NormalTok{(arr) }\OperatorTok{\textgreater{}} \DecValTok{1}\NormalTok{:}
+\NormalTok{        mid }\OperatorTok{=} \BuiltInTok{len}\NormalTok{(arr) }\OperatorTok{//} \DecValTok{2}
+\NormalTok{        left\_half }\OperatorTok{=}\NormalTok{ arr[:mid]}
+\NormalTok{        right\_half }\OperatorTok{=}\NormalTok{ arr[mid:]}
+
+\NormalTok{        merge\_sort(left\_half)}
+\NormalTok{        merge\_sort(right\_half)}
+
+\NormalTok{        i }\OperatorTok{=}\NormalTok{ j }\OperatorTok{=}\NormalTok{ k }\OperatorTok{=} \DecValTok{0}
+
+        \ControlFlowTok{while}\NormalTok{ i }\OperatorTok{\textless{}} \BuiltInTok{len}\NormalTok{(left\_half) }\KeywordTok{and}\NormalTok{ j }\OperatorTok{\textless{}} \BuiltInTok{len}\NormalTok{(right\_half):}
+            \ControlFlowTok{if}\NormalTok{ left\_half[i] }\OperatorTok{\textless{}}\NormalTok{ right\_half[j]:}
+\NormalTok{                arr[k] }\OperatorTok{=}\NormalTok{ left\_half[i]}
+\NormalTok{                i }\OperatorTok{+=} \DecValTok{1}
+            \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{                arr[k] }\OperatorTok{=}\NormalTok{ right\_half[j]}
+\NormalTok{                j }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{            k }\OperatorTok{+=} \DecValTok{1}
+
+        \ControlFlowTok{while}\NormalTok{ i }\OperatorTok{\textless{}} \BuiltInTok{len}\NormalTok{(left\_half):}
+\NormalTok{            arr[k] }\OperatorTok{=}\NormalTok{ left\_half[i]}
+\NormalTok{            i }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{            k }\OperatorTok{+=} \DecValTok{1}
+
+        \ControlFlowTok{while}\NormalTok{ j }\OperatorTok{\textless{}} \BuiltInTok{len}\NormalTok{(right\_half):}
+\NormalTok{            arr[k] }\OperatorTok{=}\NormalTok{ right\_half[j]}
+\NormalTok{            j }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{            k }\OperatorTok{+=} \DecValTok{1}
+
+    \ControlFlowTok{return}\NormalTok{ arr}
+
+\CommentTok{\# Example usage:}
+\NormalTok{arr }\OperatorTok{=}\NormalTok{ [}\DecValTok{38}\NormalTok{, }\DecValTok{27}\NormalTok{, }\DecValTok{43}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{82}\NormalTok{, }\DecValTok{10}\NormalTok{]}
+\NormalTok{sorted\_arr }\OperatorTok{=}\NormalTok{ merge\_sort(arr)}
+\BuiltInTok{print}\NormalTok{(}\StringTok{"Sorted array is:"}\NormalTok{, sorted\_arr)}
 \end{Highlighting}
 \end{Shaded}
-\caption{hello world}
-\end{coding}
 
 Thêm từ file
 
@@ -620,12 +756,23 @@ Thêm từ file
 }
 \end{verbatim}
 
-\subsection{Biểu thức toán
-học}\label{biux1ec3u-thux1ee9c-touxe1n-hux1ecdc}
+\section{Biểu thức toán học}\label{biux1ec3u-thux1ee9c-touxe1n-hux1ecdc}
 
 Inline: \(a+b\)
 
-Block: \[a+b\]
+Block: \begin{equation}\phantomsection\label{eq:eq1}{a+b}\end{equation}
+
+\section{Liên kết}\label{liuxean-kux1ebft}
+
+Liên kết tới phần~\ref{sec:1}
+
+Liên kết tới bảng~\ref{tbl:1}
+
+Liên kết tới hình~\ref{fig:1}
+
+Liên kết tới biểu thức~\ref{eq:eq1}
+
+Liên kết tới thuật toán~\ref{lst:code}
 
 \chapter{Tài liệu tham khảo}\label{tuxe0i-liux1ec7u-tham-khux1ea3o}
 
@@ -636,6 +783,11 @@ Block: \[a+b\]
 
 \end{CSLReferences}
 
-\chapter{Phụ lục}\label{phux1ee5-lux1ee5c}
+\chapter*{Phụ lục}\label{phux1ee5-lux1ee5c}
+\addcontentsline{toc}{chapter}{Phụ lục}
+
+\markboth{Phụ lục}{Phụ lục}
+
+Phần này không có số trong mục lục
 \backmatter
 \end{document}

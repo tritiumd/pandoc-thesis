@@ -47,6 +47,7 @@ title-format:
 # Thử nghiệm: tự viết định dạng tiêu đề
 toc:
   tocdepth: 2 # Độ sâu của mục lục default 2 do tính từ 0
+  includes-list: true #Thêm mục lục hình vẽ, bảng biểu... sau mục lục
   lof: true # Mục lục hình
   lot: true # Mục lục bảng
 # bìa
@@ -73,4 +74,25 @@ hypersetup:
   - linkcolor=black
   - filecolor=bubblegum
   - urlcolor=deepblue
+# config cho pandoc crossref
+figureTitle: "Hình"
+tableTitle: "Bảng"
+listingTitle: "Thuật toán"
+lofTitle: "Danh sách hình"
+lotTitle: "Danh sách bảng"
+lolTitle: "Danh sách thuật toán"
+figPrefixTemplate: "&nbsp;$$i$$"
+eqnPrefixTemplate: "&nbsp;$$i$$"
+lstPrefixTemplate: "&nbsp;$$i$$"
+tblPrefixTemplate: "&nbsp;$$i$$"
+secPrefixTemplate: "&nbsp;$$i$$"
+# diagram
+diagram:
+  engine:
+    mermaid:
+      mime-type:
+        image/png: true
+# verbatim-captioning
+verbatim_config:
+  use_with_pandoc_crossref: true
 ---
