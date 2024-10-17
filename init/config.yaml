@@ -92,6 +92,7 @@ diagram:
     mermaid:
       mime-type:
         image/png: true
+      puppeteerConfigFile: /usr/local/share/pandoc/puppeteer-config.json
 # verbatim-captioning
 verbatim_config:
   use_with_pandoc_crossref: true
